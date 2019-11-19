@@ -17,7 +17,7 @@ export default function Case(value){
                         <Grid item xs={6}> Note</Grid><Grid item xs={6}>{value.note} </Grid>
                     </Grid>
                 </CardContent>
-                <CardActions centered>
+                <CardActions>
                     <Button color="primary">Edit</Button>
                     <Button color="primary">Delete</Button>
                 </CardActions>

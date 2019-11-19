@@ -5,9 +5,6 @@ import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-d
 
 import { updateToken } from './actions/index'
 
-import {FormikNewCase} from "./components/caseComponents/CreateCaseForm"
-import {FormikRegister} from "./components/login/signupForm"
-
 import LoginForm from './components/login/loginForm'
 
 function App() {
@@ -36,6 +33,7 @@ function App() {
         <Route exact path='/login' component={LoginForm} />
         <PrivateRoute path="/" component={LoginForm} />
       </Switch>
+
     </Router>
   );
 }

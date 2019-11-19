@@ -10,7 +10,6 @@ export default function LoggedIn(){
             <Header />
             <LoggedInNav />
             <CaseList />
-            <CreateNewCaseForm />
         </div>
     )
 }

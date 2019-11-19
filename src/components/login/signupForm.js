@@ -132,7 +132,7 @@ export const FormikRegister = withFormik({
 
     handleSubmit(values, {resetForm, setSubmitting}){
       axios
-          .post("https://reqres.in/api/users",values)
+          .post("https://miracle-message.herokuapp.com/api/auth/register",values)
           .then(res =>{
               resetForm();
 
