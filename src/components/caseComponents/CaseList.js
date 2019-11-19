@@ -14,9 +14,9 @@ export default function CaseList(){
                     name={client.name} 
                     sensitive={client.sensitive}
                     age={client.age}
-                    hometown={client.hometown}
+                    home_town={client.home_town}
                     current_city={client.current_city}
-                    contact_info={client.contact_info}
+                    contact={client.contact}
                     note={client.note}/>
                 ))
             }

@@ -9,8 +9,10 @@ import {Button, Paper, TextField, Typography} from "@material-ui/core";
 import { makeStyles } from '@material-ui/core/styles';
 
 //Formik
-import {withFormik, Form} from 'formik';
-import * as Yup from "yup";
+// import {withFormik, Form} from 'formik';
+// import * as Yup from "yup";
+
+
 
 
 const useStyles = makeStyles(theme => ({
@@ -37,17 +39,26 @@ const useStyles = makeStyles(theme => ({
   
 
 
-export function SignUp(props){
-    const {values, handleChange, handleBlur, touched, errors, isSubmitting} = props;
+export default function SignUp(props){
 
+    const dispatch = useDispatch();
     const classes = useStyles();
+    const [registerUsers, setUsers] = useState({})
+    
+    const handleSubmit = e => {
+      e.preventDefault()
+      dispatch(postRegisterUser({ props, registerUsers }))
+  }
 
+    const handleChange = e => {
+      setUsers({ ...registerUsers, [e.target.name]: e.target.value })
+    }
 
     return (
         <Paper className={classes.paper}>
             
         <Typography variant="h5" centered>Sign Up</Typography>
-        <Form className={classes.paper}>
+        <form className={classes.paper}>
             
         <TextField
           required
@@ -57,13 +68,10 @@ export function SignUp(props){
           margin="normal"
           name="name"
           variant="outlined"
-          value={values.name}
           onChange={handleChange}
-          onBlur={handleBlur}
+          autoFocus
         />
-        {touched.name && errors.name && (
-                    <p>{errors.name}</p>
-                )}
+
         <TextField
           required
           id="username"
@@ -72,13 +80,10 @@ export function SignUp(props){
           margin="normal"
           name="username"
           variant="outlined"
-          value={values.username}
           onChange={handleChange}
-          onBlur={handleBlur}
+          autoFocus
         />
-          {touched.username && errors.username && (
-            <p>{errors.username}</p>
-          )}
+
         <TextField
           required
           id="email"
@@ -87,13 +92,10 @@ export function SignUp(props){
           margin="normal"
           name="email"
           variant="outlined"
-          value={values.email}
           onChange={handleChange}
-          onBlur={handleBlur}
+          autoFocus
         />
-        {touched.email && errors.email && (
-          <p>{errors.email}</p>
-        )}
+
         <TextField
           required
           id="password"
@@ -103,43 +105,56 @@ export function SignUp(props){
           margin="normal"
           name="password"
           variant="outlined"
-          value={values.password}
           onChange={handleChange}
-          onBlur={handleBlur}
+          autoFocus
         />
-         {touched.password && errors.password && (
-          <p>{errors.password}</p>
-        )}
 
-        <Button className={classes.button} type="submit" variant="contained" color="primary" disabled={isSubmitting}> 
-          {isSubmitting ? 'Submitting' : 'Submit'}
+
+        <Button className={classes.button} type="submit" variant="contained" color="primary" > 
+          Submit
         </Button>
-        </Form>
+        </form>
         </Paper>
     )
 
 
 }
 
-export const FormikRegister = withFormik({
+// export const FormikRegister = withFormik({
   
-  mapPropsToValues({name, username, email, password}){
-      return {
-          name: name || "",
-          username : username || "",
-          email: email || "",
-          password : password || "",
-      }
-  },
+//   mapPropsToValues({name, username, email, password}){
+//       return {
+//           name: name || "",
+//           username : username || "",
+//           email: email || "",
+//           password : password || "",
+//       }
+//   },
 
-  validationSchema: Yup.object().shape({
-      name: Yup.string().required(`* Name cannot be blank`),
-      username: Yup.string().required(`* Username cannot be blank`),
-      email: Yup.string().email(`Please enter a valid email`).required(`* Please provide your email address`),
-      password: Yup.string().min(8, '* Password must be 8 characters or longer').required('* Password is required'),
-  }),
+//   validationSchema: Yup.object().shape({
+//       name: Yup.string().required(`* Name cannot be blank`),
+//       username: Yup.string().required(`* Username cannot be blank`),
+//       email: Yup.string().email(`Please enter a valid email`).required(`* Please provide your email address`),
+//       password: Yup.string().min(8, '* Password must be 8 characters or longer').required('* Password is required'),
+//   }),
 
-  handleSubmit(values){
-    dispatch(postRegisterUser(values))
-}
-})(SignUp)
+//   handleSubmit(values){
+//     dispatch(postRegisterUser(values))
+// }
+// })(SignUp)
+
+// {touched.name && errors.name && (
+//   <p>{errors.name}</p>
+// )}
+
+// {touched.email && errors.email && (
+//   <p>{errors.email}</p>
+// )}
+
+// {touched.username && errors.username && (
+//   <p>{errors.username}</p>
+// )}
+
+// {touched.password && errors.password && (
+//   <p>{errors.password}</p>
+// )}
