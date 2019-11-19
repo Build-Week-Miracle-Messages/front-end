@@ -1,14 +1,9 @@
 import React, {useState} from "react";
-import axios from "axios";
-
 
 //styling
 import {makeStyles} from "@material-ui/styles"
 import {Button, Paper, Checkbox, TextField, Typography} from "@material-ui/core"
 
-//import Formik and Yup
-import {withFormik, Form} from "formik";
-import * as Yup from "yup";
 
 
 const useStyles = makeStyles(theme => ({
@@ -28,14 +23,24 @@ const useStyles = makeStyles(theme => ({
   }));
 
 export default function CreateNewCase(props){
-    const {values, handleChange, handleBlur, touched, errors, isSubmitting } = props;
+    const {values, touched, errors, isSubmitting } = props;
     const classes = useStyles();
 
+    const [clients, setClients] = useState({})
+
+    const handleSubmit = e => {
+      e.preventDefault()
+      // dispatch(postRegisterUser({ props, clients }))
+  }
+
+    const handleChange = e => {
+      setClients({ ...clients, [e.target.name]: e.target.value })
+    }
 
     return (
         <Paper>
 
-        <Form className={classes.paper}>
+        <form className={classes.paper}>
 
         <TextField
           required
@@ -45,9 +50,7 @@ export default function CreateNewCase(props){
           margin="normal"
           variant="outlined"
           name="name"
-          value={values.name}
-          onChange={handleChange}
-          onBlur={handleBlur}
+          autoFocus
         />
         <TextField
           required
@@ -57,13 +60,9 @@ export default function CreateNewCase(props){
           margin="normal"
           variant="outlined"
           name="age"
-          value={values.age}
-          onChange={handleChange}
-          onBlur={handleBlur}
+          autoFocus
         />
-        {touched.age && errors.age && (
-          <p>{errors.age}</p>
-        )}
+
         <TextField
           required
           id="current_city"
@@ -72,99 +71,117 @@ export default function CreateNewCase(props){
           margin="normal"
           variant="outlined"
           name="current_city"
-          value={values.current_city}
-          onChange={handleChange}
-          onBlur={handleBlur}
+          autoFocus
         />
-        {touched.current_city && errors.current_city && (
-          <p>{errors.current_city}</p>
-        )}
+
         <TextField
           required
-          id="hometown"
+          id="home_town"
           label="Client's Hometown"
           className={classes.textField}
           margin="normal"
           variant="outlined"
-          name="hometown"
-          value={values.hometown}
-          onChange={handleChange}
-          onBlur={handleBlur}
+          name="home_town"
+          autoFocus
         />
-        {touched.hometown && errors.hometown && (
-          <p>{errors.hometown}</p>
-        )}
+
         <TextField
           required
-          id="contact_info"
+          id="contact"
           label="Client's Contact Information"
           className={classes.textField}
           margin="normal"
           variant="outlined"
-          name="contact_info"
-          value={values.contact_info}
-          onChange={handleChange}
-          onBlur={handleBlur}
+          name="contact"
+          autoFocus
         />
-        {touched.contact_info && errors.contact_info && (
-          <p>{errors.contact_info}</p>
-        )}
-         <TextField
-          id="note"
+
+
+        <Checkbox checked={values.sensitive} name="sensitive"/> <Typography>Check if this is a sensitive case.</Typography>
+
+        <TextField
+          id="connect_name"
           label="Note"
           className={classes.textField}
           margin="normal"
           variant="outlined"
-          name="note"
-          value={values.note}
-          onChange={handleChange}
-          onBlur={handleBlur}
+          name="connect_name"
+          autoFocus
         />
-        <Checkbox checked={values.sensitive} name="sensitive"/> <Typography>Check if this is a sensitive case.</Typography>
 
-        <Button className={classes.button} variant="contained" color="primary" disabled={isSubmitting}>
-          {isSubmitting ? 'Creating...' : 'Create a Case'}
+        <TextField
+          id="connect_age"
+          label="Note"
+          className={classes.textField}
+          margin="normal"
+          variant="outlined"
+          name="connect_age"
+          autoFocus
+          /> 
+
+        <TextField
+          id="connect_relationship"
+          label="Note"
+          className={classes.textField}
+          margin="normal"
+          variant="outlined"
+          name="connect_relationship"
+          autoFocus
+        />
+
+        <TextField
+          id="connect_location"
+          label="Note"
+          className={classes.textField}
+          margin="normal"
+          variant="outlined"
+          name="connect_location"
+          autoFocus
+        />
+
+        <Button className={classes.button} variant="contained" color="primary">
+          Create a Case
         </Button>
-        </Form>
+        </form>
         </Paper>
     )
 }
 
-export const FormikNewCase = withFormik({
-    mapPropsToValues({name, age, current_city, hometown, contact_info, note, sensitive}){
-        return {
-            name: name || "",
-            age: age || "",
-            current_city: current_city || "",
-            hometown: hometown || "",
-            contact_info: contact_info || "",
-            note: note || "",
-            sensitive: sensitive || false,
-        }
+// export const FormikNewCase = withFormik({
+//     mapPropsToValues({name, age, current_city, hometown, contact_info, note, sensitive}){
+//         return {
+//             name: name || "",
+//             age: age || "",
+//             current_city: current_city || "",
+//             hometown: hometown || "",
+//             contact_info: contact_info || "",
+//             note: note || "",
+//             sensitive: sensitive || false,
+//         }
 
-    },
+//     },
 
-    validationSchema: Yup.object().shape({
-        name: Yup.string().required(`* Client's Name cannot be blank`),
-        age: Yup.number().required(`* Please input client's age`),
-        current_city: Yup.string().required(`* Current city cannot be blank`),
-        hometown: Yup.string().required(`* Please advised client's hometown. If unknown, please put N/A`),
-        contact_info:  Yup.string().required(`* Please advised the best way to contact client`)
-    }),
+//     validationSchema: Yup.object().shape({
+//         name: Yup.string().required(`* Client's Name cannot be blank`),
+//         age: Yup.number().required(`* Please input client's age`),
+//         current_city: Yup.string().required(`* Current city cannot be blank`),
+//         hometown: Yup.string().required(`* Please advised client's hometown. If unknown, please put N/A`),
+//         contact_info:  Yup.string().required(`* Please advised the best way to contact client`)
+//     }),
 
-    handleSubmit(values, {resetForm, setSubmitting}){
-        axios
-            .post("https://reqres.in/api/users",values)
-            .then(res =>{
-                resetForm();
-                console.log(res)
+//     handleSubmit(values, {resetForm, setSubmitting}){
+//         axios
+//             .post("https://reqres.in/api/users",values)
+//             .then(res =>{
+//                 resetForm();
+//                 console.log(res)
 
-            })
-            .catch(err => {
-                console.log("CODE RED", err);
-            }) 
-            .finally(()=>{
-                setSubmitting(false)
-            })
-    }
-})(CreateNewCase)
+//             })
+//             .catch(err => {
+//                 console.log("CODE RED", err);
+//             }) 
+//             .finally(()=>{
+//                 setSubmitting(false)
+//             })
+//     }
+// })(CreateNewCase)
