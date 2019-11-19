@@ -10,6 +10,7 @@ export default function CaseList(){
             {
                 clientInfo.map(client=>(
                     <Case 
+                    key={client.id}
                     id={client.id} 
                     name={client.name} 
                     sensitive={client.sensitive}

@@ -57,7 +57,7 @@ export default function SignUp(props){
     return (
         <Paper className={classes.paper}>
             
-        <Typography variant="h5" centered>Sign Up</Typography>
+        <Typography variant="h5">Sign Up</Typography>
         <form className={classes.paper}>
             
         <TextField
