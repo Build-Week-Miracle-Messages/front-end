@@ -1,6 +1,9 @@
 import React, {useState} from "react";
 import axios from "axios";
 
+import {postRegisterUser} from "./../../actions"
+import {useDispatch} from "react-redux"
+
 //styling
 import {Button, Paper, TextField, Typography} from "@material-ui/core";
 import { makeStyles } from '@material-ui/core/styles';
@@ -31,10 +34,14 @@ const useStyles = makeStyles(theme => ({
         margin: 30,
     }
   }));
+  
+
 
 export function SignUp(props){
-    const {values, handleChange, handleBlur, touched, errors, isSubmitting } = props;
+    const {values, handleChange, handleBlur, touched, errors, isSubmitting} = props;
+
     const classes = useStyles();
+
 
     return (
         <Paper className={classes.paper}>
@@ -110,38 +117,29 @@ export function SignUp(props){
         </Form>
         </Paper>
     )
+
+
 }
 
 export const FormikRegister = withFormik({
-    mapPropsToValues({name, username, email, password}){
-        return {
-            name: name || "",
-            username : username || "",
-            email: email || "",
-            password : password || "",
-        }
+  
+  mapPropsToValues({name, username, email, password}){
+      return {
+          name: name || "",
+          username : username || "",
+          email: email || "",
+          password : password || "",
+      }
+  },
 
-    },
+  validationSchema: Yup.object().shape({
+      name: Yup.string().required(`* Name cannot be blank`),
+      username: Yup.string().required(`* Username cannot be blank`),
+      email: Yup.string().email(`Please enter a valid email`).required(`* Please provide your email address`),
+      password: Yup.string().min(8, '* Password must be 8 characters or longer').required('* Password is required'),
+  }),
 
-    validationSchema: Yup.object().shape({
-        name: Yup.string().required(`* Name cannot be blank`),
-        username: Yup.string().required(`* Username cannot be blank`),
-        email: Yup.string().email(`Please enter a valid email`).required(`* Please provide your email address`),
-        password: Yup.string().min(8, '* Password must be 8 characters or longer').required('* Password is required'),
-    }),
-
-    handleSubmit(values, {resetForm, setSubmitting}){
-      axios
-          .post("https://miracle-message.herokuapp.com/api/auth/register",values)
-          .then(res =>{
-              resetForm();
-
-          })
-          .catch(err => {
-              console.log("CODE RED, err");
-          }) 
-          .finally(()=>{
-              setSubmitting(false)
-          })
-  }
+  handleSubmit(values){
+    dispatch(postRegisterUser(values))
+}
 })(SignUp)

@@ -3,13 +3,17 @@ import {
     LOGIN_SUCCESS,
     LOGIN_FAIL,
     UPDATE_TOKEN,
-    LOGOUT_USER
+    LOGOUT_USER,
+    REGISTER_START,
+    REGISTER_SUCCESS,
+    REGISTER_FAIL
 } from '../actions'
 
 const initialState = {
     isLoggedIn: false,
     isLoggingIn: false,
     loginError: '',
+    registerError: '',
     token: '',
 }
 
@@ -49,6 +53,25 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 loggedIn: false
+            }
+        }
+
+        case REGISTER_START: {
+            return {
+                ...state,
+            }
+        }
+
+        case REGISTER_SUCCESS: {
+            return {
+                ...state,
+            }
+
+        }
+        case REGISTER_FAIL: {
+            return {
+                ...state,
+                registerError: action.payload
             }
         }
 
