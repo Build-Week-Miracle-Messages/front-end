@@ -1,8 +1,13 @@
 import React, {useState} from "react";
+import axios from "axios";
 
 //styling
-import {Button, Paper, TextField, Typography} from "@material-ui/core"
+import {Button, Paper, TextField, Typography} from "@material-ui/core";
 import { makeStyles } from '@material-ui/core/styles';
+
+//Formik
+import {withFormik, Form} from 'formik';
+import * as Yup from "yup";
 
 
 const useStyles = makeStyles(theme => ({
@@ -27,99 +32,116 @@ const useStyles = makeStyles(theme => ({
     }
   }));
 
-export default function SignUp(props){
+export function SignUp(props){
+    const {values, handleChange, handleBlur, touched, errors, isSubmitting } = props;
     const classes = useStyles();
-
-    //form handling
-
-    const [newUsers, setNewUser] = useState({
-        fname: '',
-        username: '',
-        email: '',
-        password: ''
-    })
-
-    const inputChanges = event => {
-        setNewUser({
-            ...newUsers, 
-            [event.target.name]: event.target.value
-        })
-    }
-
-    const formSubmission = event =>{
-        event.preventDefault();
-        props.addNewUser(newUsers);
-        setNewUser({fname: "", email: ""})
-    }
-    //end of form handling
 
     return (
         <Paper className={classes.paper}>
             
         <Typography variant="h5" centered>Sign Up</Typography>
-        <form className={classes.paper} onSubmit={formSubmission}>
+        <Form className={classes.paper}>
             
         <TextField
           required
-          id="standard-required"
+          id="name"
           label="Name"
           className={classes.textField}
           margin="normal"
-          value={newUsers.fname}
-          onChange={inputChanges}
+          name="name"
+          variant="outlined"
+          value={values.name}
+          onChange={handleChange}
+          onBlur={handleBlur}
         />
+        {touched.name && errors.name && (
+                    <p>{errors.name}</p>
+                )}
         <TextField
           required
-          id="standard-required"
+          id="username"
           label="Username"
           className={classes.textField}
           margin="normal"
-          value={newUsers.username}
-          onChange={inputChanges}
+          name="username"
+          variant="outlined"
+          value={values.username}
+          onChange={handleChange}
+          onBlur={handleBlur}
         />
+          {touched.username && errors.username && (
+            <p>{errors.username}</p>
+          )}
         <TextField
           required
-          id="standard-password-input"
+          id="email"
           label="Email"
           className={classes.textField}
           margin="normal"
-          value={newUsers.email}
-          onChange={inputChanges}
+          name="email"
+          variant="outlined"
+          value={values.email}
+          onChange={handleChange}
+          onBlur={handleBlur}
         />
+        {touched.email && errors.email && (
+          <p>{errors.email}</p>
+        )}
         <TextField
           required
-          id="standard-password-input"
+          id="password"
           label="Password"
           className={classes.textField}
           type="password"
-          autoComplete="current-password"
           margin="normal"
-          value={newUsers.password}
-          onChange={inputChanges}
+          name="password"
+          variant="outlined"
+          value={values.password}
+          onChange={handleChange}
+          onBlur={handleBlur}
         />
+         {touched.password && errors.password && (
+          <p>{errors.password}</p>
+        )}
 
-        <Button className={classes.button} type="submit" variant="contained" color="primary"> Submit </Button>
-            </form>
+        <Button className={classes.button} type="submit" variant="contained" color="primary" disabled={isSubmitting}> 
+          {isSubmitting ? 'Submitting' : 'Submit'}
+        </Button>
+        </Form>
         </Paper>
     )
 }
 
-// export const FormikNewCaseForm = withFormik({
-//     mapPropsToValues({name, username, email, password}){
-//         return {
-//             name: name || "",
-//             username: username || "",
-//             email: email || "",
-//             password: password || "",
-//             tos: tos || false,
-//         }
+export const FormikRegister = withFormik({
+    mapPropsToValues({name, username, email, password}){
+        return {
+            name: name || "",
+            username : username || "",
+            email: email || "",
+            password : password || "",
+        }
 
-//     },
+    },
 
-//     validationSchema: Yup.object().shape({
-//         name: Yup.string().required(`* Name cannot be blank`),
-//         username: Yup.number().required(`* Username cannot be blank`),
-//         email: Yup.string().email(`* Email not valid`).required(`* Please provide your email address`),
-//         password: Yup.string().min(8, '* Password must be 8 characters or longer').required('* Password is required'),
-//     }),
-// })(CreateNewCase)
+    validationSchema: Yup.object().shape({
+        name: Yup.string().required(`* Name cannot be blank`),
+        username: Yup.string().required(`* Username cannot be blank`),
+        email: Yup.string().email(`Please enter a valid email`).required(`* Please provide your email address`),
+        password: Yup.string().min(8, '* Password must be 8 characters or longer').required('* Password is required'),
+    }),
+
+    handleSubmit(values, {resetForm, setSubmitting}){
+      axios
+          .post("https://miracle-message.herokuapp.com/api/auth/register",values)
+          .then(res =>{
+              resetForm();
+
+          })
+          .catch(err => {
+              console.log("CODE RED, err");
+          }) 
+          .finally(()=>{
+              setSubmitting(false)
+          })
+  }
+})(SignUp)
