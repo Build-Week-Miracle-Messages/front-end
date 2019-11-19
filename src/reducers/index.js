@@ -26,7 +26,7 @@ export default (state = initialState, action) => {
                 ...state,
                 isLoggingIn: false,
                 isLoggedIn: true,
-                token: action.payload
+                token: action.payload.token
             }
 
         }

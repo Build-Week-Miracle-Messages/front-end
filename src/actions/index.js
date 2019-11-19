@@ -11,9 +11,9 @@ export const LOGOUT_USER = 'LOGOUT_USER'
 export const postLoginUser = payload => dispatch => {
     dispatch({ type: LOGIN_START })
     axios
-        .post('http://localhost:5000/api/login/', payload.credentials)
+        .post('https://miracle-message.herokuapp.com/api/auth/login/', payload.credentials)
         .then(res => {
-            dispatch({ type: LOGIN_SUCCESS, payload: res.data.payload })
+            dispatch({ type: LOGIN_SUCCESS, payload: res.data })
             payload.props.history.push('/')
         })
         .catch(err => dispatch({ type: LOGIN_FAIL, payload: err }))
