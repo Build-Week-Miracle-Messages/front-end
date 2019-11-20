@@ -25,7 +25,6 @@ export const postLoginUser = payload => dispatch => {
 
 export const postRegisterUser = payload => dispatch => {
     dispatch({ type: REGISTER_START })
-    console.log(payload)
     axiosWithAuth()
         .post('https://miracle-message.herokuapp.com/api/auth/register', payload.registerUsers)
         .then(res => {
