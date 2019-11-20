@@ -10,16 +10,16 @@ import AccountCircleIcon from '@material-ui/icons/AccountCircle'
 
 
 
-// const ClientSchema = Yup.object().shape({
-//   name: Yup.string().required("Client's name is required"),
-//   age: Yup.number().required("Number is required").positive("Age has to be positive").integer("Age has to be an interger"),
-//   home_town: Yup.string().required("Client's hometown is required"),
-//   current_city: Yup.string().required("Client's current city is required"),
-//   contact: Yup.string().required("Client's contact is required"),
-//   connect_name: Yup.string(),
-//   connect_age: Yup.number().positive("Age has to be positive").integer("Age has to be an integer"),
-//   connect_relationship: Yup.string()
-// })
+const ClientSchema = Yup.object().shape({
+  name: Yup.string().required("Client's name is required"),
+  age: Yup.number().required("Number is required").positive("Age has to be positive").integer("Age has to be an interger"),
+  home_town: Yup.string().required("Client's hometown is required"),
+  current_city: Yup.string().required("Client's current city is required"),
+  contact: Yup.string().required("Client's contact is required"),
+  connect_name: Yup.string(),
+  connect_age: Yup.number().positive("Age has to be positive").integer("Age has to be an integer"),
+  connect_relationship: Yup.string()
+})
 
 const useStyles = makeStyles(theme => ({
     textField: {
