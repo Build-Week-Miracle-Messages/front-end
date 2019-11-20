@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import Case from "./Case"
 
 import {Grid} from "@material-ui/core"
@@ -10,7 +10,17 @@ import {dummyData} from "./dummydata"
 import axios from "axios"
 
 export default function CaseList(){
-    const [clientInfo] = useState(dummyData)
+    const [clientInfo, setClient] = useState(dummyData)
+    const [action, setAction] = useState([])
+
+    const handleDelete = id => {
+        const newClientInfo = clientInfo.filter(person => person.id !== id)
+        setClient(newClientInfo)
+    }
+
+    const handleEdit = id => {
+        console.log(id)
+    }
 
     return(
         <Grid container direction="column" alignItems="center">
@@ -30,7 +40,10 @@ export default function CaseList(){
                     connect_name={client.connect_name}
                     connect_age={client.connect_age}
                     connect_relationship={client.connect_relationship}
-                    connect_location={client.connect_location}/>
+                    connect_location={client.connect_location}
+                    onDelete={handleDelete}
+                    onEdit={handleEdit}
+                    />
                 ))
             }
         </Grid>
