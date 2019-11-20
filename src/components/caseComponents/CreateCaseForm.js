@@ -62,11 +62,9 @@ export default function CreateNewCase(props){
     };
 
     return (
-        <Paper className={classes.paper}>
-        <Typography variant="h5">Create a new case</Typography>
+        <div className={classes.paper}>
         <Avatar><AccountCircleIcon />
         </Avatar>
-        Please complete the information below
         <form className={classes.paper} onSubmit={handleSubmit}>
 
         <TextField
@@ -203,7 +201,7 @@ export default function CreateNewCase(props){
           Create a Case
         </Button>
         </form>
-        </Paper>
+        </div>
     )
 }
 

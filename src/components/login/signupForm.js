@@ -68,10 +68,10 @@ export default function SignUp(props){
     }
 
     return (
-        <Paper className={classes.paper}>
+        <div className={classes.paper}>
             
-        <Typography variant="h5">Sign Up</Typography>
-        <Avatar><AccountCircleIcon />
+        <Avatar>
+          <AccountCircleIcon />
         </Avatar>
         <form className={classes.paper} onSubmit={handleSubmit}>
             
@@ -129,7 +129,7 @@ export default function SignUp(props){
           Submit
         </Button>
         </form>
-        </Paper>
+        </div>
     )
 
 
