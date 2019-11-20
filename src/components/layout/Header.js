@@ -1,6 +1,6 @@
 import React from "react"
 
-import {AppBar, Toolbar, Grid, Button, Typography, IconButton} from "@material-ui/core"
+import {AppBar, Toolbar, Grid, Button, IconButton} from "@material-ui/core"
 import {Dialog, DialogTitle, DialogContent, DialogContentText} from '@material-ui/core'
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import CreateNewCase from './../caseComponents/CreateCaseForm'

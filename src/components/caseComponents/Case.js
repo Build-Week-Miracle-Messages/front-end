@@ -3,15 +3,13 @@ import React from "react";
 import {makeStyles} from '@material-ui/core/styles'
 import {Grid, Card, CardActions, CardContent, Button, Typography} from "@material-ui/core"
 
-import {Dialog, DialogActions,DialogContent, DialogContentText, DialogTitle}  from '@material-ui/core';
-
 import {Delete, Edit} from '@material-ui/icons'
 
 const useStyles = makeStyles({
 
 })
 
-export default function Case(props, {onDelete}){
+export default function Case(props){
 
 
     return (
@@ -25,7 +23,7 @@ export default function Case(props, {onDelete}){
 
                     <Typography variant="h5">Client's Information </Typography>
 
-                    <Grid container spacing={2} xs={12}>
+                    <Grid container spacing={2}>
                         <Grid item xs={6}>Client's Name</Grid><Grid item xs={6}> {props.name}</Grid>
                         <Grid item xs={6}>Client's Age</Grid><Grid item xs={6}> {props.age}</Grid>
                         <Grid item xs={6}>Current City</Grid><Grid item xs={6}> {props.current_city}</Grid>
@@ -35,7 +33,7 @@ export default function Case(props, {onDelete}){
 
                         <Typography variant="h5">Client's Relative Information </Typography>
 
-                    <Grid container spacing={2} xs={12}>
+                    <Grid container spacing={2}>
                         <Grid item xs={6}>Name</Grid><Grid item xs={6}>{props.connect_name} </Grid>
                         <Grid item xs={6}>Age</Grid><Grid item xs={6}>{props.connect_age} </Grid>
                         <Grid item xs={6}>Relationship</Grid><Grid item xs={6}>{props.connect_relationship} </Grid>

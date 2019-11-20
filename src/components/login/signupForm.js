@@ -1,14 +1,12 @@
 import React, {useState} from "react";
-import axios from "axios";
 
 import {postRegisterUser} from "./../../actions";
 import {useDispatch} from "react-redux";
 
 import useForm from "react-hook-form";
-import * as Yup from "yup";
 
 //styling
-import {Button, Paper, TextField, Typography, Avatar} from "@material-ui/core";
+import {Button, TextField, Avatar} from "@material-ui/core";
 import { makeStyles } from '@material-ui/core/styles';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle'
 
@@ -40,9 +38,8 @@ const useStyles = makeStyles(theme => ({
 
 export default function SignUp(props){
 
-    const {register, errors} = useForm({
-      validationSchema: SignupSchema
-    })
+    const {register} = useForm()
+
     const dispatch = useDispatch();
     const classes = useStyles();
     const [registerUsers, setUsers] = useState({})
@@ -74,6 +71,7 @@ export default function SignUp(props){
           variant="outlined"
           onChange={handleChange}
           autoFocus
+          ref={register}
         />
 
         <TextField
@@ -86,6 +84,7 @@ export default function SignUp(props){
           variant="outlined"
           onChange={handleChange}
           autoFocus
+          ref={register}
         />
 
         <TextField
@@ -98,6 +97,7 @@ export default function SignUp(props){
           variant="outlined"
           onChange={handleChange}
           autoFocus
+          ref={register}
         />
 
         <TextField
@@ -111,6 +111,7 @@ export default function SignUp(props){
           variant="outlined"
           onChange={handleChange}
           autoFocus
+          ref={register}
         />
 
 

@@ -1,25 +1,11 @@
 import React, {useState} from "react";
 
 import useForm from "react-hook-form"
-import * as Yup from "yup"
 
 //styling
 import {makeStyles} from "@material-ui/styles"
 import {Grid, Button, Paper, Checkbox, TextField, Typography, Switch, FormControlLabel, Collapse, Avatar} from "@material-ui/core"
 import AccountCircleIcon from '@material-ui/icons/AccountCircle'
-
-
-
-const ClientSchema = Yup.object().shape({
-  name: Yup.string().required("Client's name is required"),
-  age: Yup.number().required("Number is required").positive("Age has to be positive").integer("Age has to be an interger"),
-  home_town: Yup.string().required("Client's hometown is required"),
-  current_city: Yup.string().required("Client's current city is required"),
-  contact: Yup.string().required("Client's contact is required"),
-  connect_name: Yup.string(),
-  connect_age: Yup.number().positive("Age has to be positive").integer("Age has to be an integer"),
-  connect_relationship: Yup.string()
-})
 
 const useStyles = makeStyles(theme => ({
     textField: {
@@ -39,9 +25,7 @@ const useStyles = makeStyles(theme => ({
   }));
   
 export default function CreateNewCase(props){
-    const { register, errors } = useForm({
-      validationSchema: ClientSchema
-    })
+    const { register} = useForm()
     const classes = useStyles();
 
     const [checked, setChecked] = useState(false)
@@ -79,7 +63,7 @@ export default function CreateNewCase(props){
           autoFocus
           ref={register}
         />
-        {errors.name && <p>{errors.name.message}</p>}
+
         <TextField
           required
           id="age"
@@ -91,7 +75,7 @@ export default function CreateNewCase(props){
           autoFocus
           ref={register}
         />
-        {errors.age && <p>{errors.age.message}</p>}
+
 
         <TextField
           required
@@ -104,7 +88,7 @@ export default function CreateNewCase(props){
           autoFocus
           ref={register}
         />
-        {errors.current_city && <p>{errors.current_city.message}</p>}
+
 
         <TextField
           required
@@ -117,7 +101,7 @@ export default function CreateNewCase(props){
           autoFocus
           ref={register}
         />
-        {errors.home_town && <p>{errors.home_town.message}</p>}
+
 
         <TextField
           required
@@ -130,7 +114,7 @@ export default function CreateNewCase(props){
           autoFocus
           ref={register}
         />
-        {errors.contact && <p>{errors.contact.message}</p>}
+
 
 
         <FormControlLabel
@@ -157,7 +141,7 @@ export default function CreateNewCase(props){
           autoFocus
           ref={register}
         />
-        {errors.connect_name && <p>{errors.connect_name .message}</p>}
+
 
         <TextField
           id="connect_age"
@@ -169,7 +153,7 @@ export default function CreateNewCase(props){
           autoFocus
           ref={register}
           /> 
-        {errors.connect_age && <p>{errors.connect_age .message}</p>}
+
         <TextField
           id="connect_relationship"
           label="Relationship with Client"
@@ -180,8 +164,6 @@ export default function CreateNewCase(props){
           autoFocus
           ref={register}
         />
-         {errors.connect_relationship && <p>{errors.connect_relationship.message}</p>}
-
         <TextField
           id="connect_location"
           label="Last Known Location"
@@ -192,7 +174,7 @@ export default function CreateNewCase(props){
           autoFocus
           ref={register}
         />
-         {errors.connect_location && <p>{errors.connect_location.message}</p>}
+        
           </Grid>
         </Collapse>
         </div>
@@ -204,42 +186,3 @@ export default function CreateNewCase(props){
         </div>
     )
 }
-
-// export const FormikNewCase = withFormik({
-//     mapPropsToValues({name, age, current_city, hometown, contact_info, note, sensitive}){
-//         return {
-//             name: name || "",
-//             age: age || "",
-//             current_city: current_city || "",
-//             hometown: hometown || "",
-//             contact_info: contact_info || "",
-//             note: note || "",
-//             sensitive: sensitive || false,
-//         }
-
-//     },
-
-//     validationSchema: Yup.object().shape({
-//         name: Yup.string().required(`* Client's Name cannot be blank`),
-//         age: Yup.number().required(`* Please input client's age`),
-//         current_city: Yup.string().required(`* Current city cannot be blank`),
-//         hometown: Yup.string().required(`* Please advised client's hometown. If unknown, please put N/A`),
-//         contact_info:  Yup.string().required(`* Please advised the best way to contact client`)
-//     }),
-
-//     handleSubmit(values, {resetForm, setSubmitting}){
-//         axios
-//             .post("https://reqres.in/api/users",values)
-//             .then(res =>{
-//                 resetForm();
-//                 console.log(res)
-
-//             })
-//             .catch(err => {
-//                 console.log("CODE RED", err);
-//             }) 
-//             .finally(()=>{
-//                 setSubmitting(false)
-//             })
-//     }
-// })(CreateNewCase)
