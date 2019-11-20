@@ -30,6 +30,8 @@ const initialState = {
     loginError: '',
     registerError: '',
     token: '',
+    deletingCase: false,
+    cases: [],
 }
 
 export default (state = initialState, action) => {
@@ -87,6 +89,77 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 registerError: action.payload
+            }
+        }
+
+        case GET_CASES_START: {
+            return {
+                ...state,
+                gettingCases: true
+            }
+        }
+
+        case GET_CASES_SUCCESS: {
+            return {
+                ...state,
+                gettingCases: false,
+                gotCases: true,
+                cases: action.payload
+            }
+        }
+
+        case GET_CASES_FAIL: {
+            return {
+                ...state,
+                gettingCases: false,
+                gotCases: false,
+                caseError: action.payload
+            }
+        }
+
+        case DELETE_CASE_START: {
+            return {
+                ...state,
+                deletingCase: true
+            }
+        }
+
+        case DELETE_CASE_SUCCESS: {
+            return {
+                ...state,
+                deletingCase: false,
+                cases: action.payload
+            }
+        }
+
+        case DELETE_CASE_FAIL: {
+            return {
+                ...state,
+                deletingCase: false,
+                caseError: action.payload
+            }
+        }
+
+        case UPDATE_CASE_START: {
+            return {
+                ...state,
+                creatingCase: true
+            }
+        }
+
+        case UPDATE_CASE_SUCCESS: {
+            return {
+                ...state,
+                creatingCase: false,
+                cases: action.payload
+            }
+        }
+
+        case UPDATE_CASE_FAIL: {
+            return {
+                ...state,
+                creatingCase: false,
+                caseError: action.payload
             }
         }
 
