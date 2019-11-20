@@ -1,12 +1,21 @@
 import React, {useState} from "react";
 import Case from "./Case"
+
 import {Grid} from "@material-ui/core"
+
+import Header from "./../layout/Header"
+
 import {dummyData} from "./dummydata"
+
+import axios from "axios"
 
 export default function CaseList(){
     const [clientInfo] = useState(dummyData)
+
     return(
         <Grid container direction="column" alignItems="center">
+            <Header />
+
             {
                 clientInfo.map(client=>(
                     <Case 
