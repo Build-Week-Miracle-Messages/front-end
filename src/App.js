@@ -53,7 +53,6 @@ function App() {
         <Route exact path='/login' component={LoginForm} />
         <PrivateRoute path="/" component={CaseList} />
       </Switch>
-      <CaseList />
     </Router>
     </ThemeProvider>
   );
