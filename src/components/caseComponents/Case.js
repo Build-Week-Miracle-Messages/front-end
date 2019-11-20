@@ -1,13 +1,8 @@
 import React from "react";
 
-import {makeStyles} from '@material-ui/core/styles'
 import {Grid, Card, CardActions, CardContent, Button, Typography} from "@material-ui/core"
 
 import {Delete, Edit} from '@material-ui/icons'
-
-const useStyles = makeStyles({
-
-})
 
 export default function Case(props){
 

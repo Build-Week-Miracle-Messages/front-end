@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, {useState} from "react";
 import Case from "./Case"
 
 import {Grid} from "@material-ui/core"
@@ -7,11 +7,8 @@ import Header from "./../layout/Header"
 
 import {dummyData} from "./dummydata"
 
-import axios from "axios"
-
 export default function CaseList(props){
     const [clientInfo, setClient] = useState(dummyData)
-    const [action, setAction] = useState([])
 
     const handleDelete = id => {
         const newClientInfo = clientInfo.filter(person => person.id !== id)

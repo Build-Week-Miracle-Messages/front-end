@@ -4,7 +4,7 @@ import useForm from "react-hook-form"
 
 //styling
 import {makeStyles} from "@material-ui/styles"
-import {Grid, Button, Paper, Checkbox, TextField, Typography, Switch, FormControlLabel, Collapse, Avatar} from "@material-ui/core"
+import {Grid, Button, Paper, Checkbox, TextField, Switch, FormControlLabel, Collapse, Avatar} from "@material-ui/core"
 import AccountCircleIcon from '@material-ui/icons/AccountCircle'
 
 const useStyles = makeStyles(theme => ({
@@ -30,16 +30,16 @@ export default function CreateNewCase(props){
 
     const [checked, setChecked] = useState(false)
     
-    const [clients, setClients] = useState({})
+    //const [clients, setClients] = useState({})
 
     const handleSubmit = e => {
       e.preventDefault()
       // dispatch(postRegisterUser({ props, clients }))
   }
     
-    const handleChange = e => {
-      setClients({ ...clients, [e.target.name]: e.target.value })
-    }
+    //const handleChange = e => {
+    // setClients({ ...clients, [e.target.name]: e.target.value })
+    //}
 
     const toggleForm = () => {
       setChecked(prev => !prev);
