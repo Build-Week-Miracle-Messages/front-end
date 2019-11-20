@@ -2,6 +2,10 @@ import React, {useState} from "react";
 
 import useForm from "react-hook-form"
 
+import {useDispatch} from 'react-redux'
+
+import {createCase} from '../../actions'
+
 //styling
 import {makeStyles} from "@material-ui/styles"
 import {Grid, Button, Paper, Checkbox, TextField, Switch, FormControlLabel, Collapse, Avatar} from "@material-ui/core"
@@ -27,6 +31,7 @@ const useStyles = makeStyles(theme => ({
 export default function CreateNewCase(props){
     const { register} = useForm()
     const classes = useStyles();
+    const dispatch = useDispatch()
 
     const [checked, setChecked] = useState(false)
     
@@ -34,7 +39,7 @@ export default function CreateNewCase(props){
 
     const handleSubmit = e => {
       e.preventDefault()
-      // dispatch(postRegisterUser({ props, clients }))
+      dispatch(createCase({ props, clients }))
   }
     
     //const handleChange = e => {

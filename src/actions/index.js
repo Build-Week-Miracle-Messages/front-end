@@ -66,6 +66,7 @@ export const getCases = payload => dispatch => {
 }
 
 export const createCase = payload => dispatch => {
+    console.log(payload)
     dispatch({ type: CREATE_CASE_START })
     axiosWithAuth()
         .post('https://miracle-message.herokuapp.com/api/cases', payload)
