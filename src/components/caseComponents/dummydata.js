@@ -4,98 +4,118 @@ export const dummyData = [{
     "name": "Aqua Morty",
     "age": "50",
     "location": "Home",
-    "hometown": "Helsinki",
+    "home_town": "Helsinki",
     "current_city": "Cincinati",
-    "contact_info": "derp@derpderp.com",
-    "note": "n/a"
+    "contact": "derp@derpderp.com",
+    "connect_name": "n/a"
 }, {
     "id": 22,
     "sensitive": true,
     "name": "Aqua Morty",
     "age": "50",
     "location": "Home",
-    "hometown": "Helsinki",
+    "home_town": "Helsinki",
     "current_city": "Cincinati",
-    "contact_info": "derp@derpderp.com",
-    "note": "n/a"
+    "contact": "derp@derpderp.com",
+    "connect_name": "n/a",
+    "connect_age": "n/a",
+    "connect_location": "n/a",
+    "connect_relationship": "n/a"
 }, {
     "id": 24,
     "sensitive": true,
     "name": "Aqua Morty",
     "age": "50",
     "location": "Home",
-    "hometown": "Helsinki",
+    "home_town": "Helsinki",
     "current_city": "Cincinati",
-    "contact_info": "derp@derpderp.com",
-    "note": "n/a"
+    "contact": "derp@derpderp.com",
+    "connect_name": "n/a",
+    "connect_age": "n/a",
+    "connect_location": "n/a",
+    "connect_relationship": "n/a"
 }, {
     "id": 25,
     "sensitive": true,
     "name": "Aqua Morty",
     "age": "50",
     "location": "Home",
-    "hometown": "Helsinki",
+    "home_town": "Helsinki",
     "current_city": "Cincinati",
-    "contact_info": "derp@derpderp.com",
-    "note": "n/a"
+    "contact": "derp@derpderp.com",
+    "connect_name": "n/a",
+    "connect_age": "n/a",
+    "connect_location": "n/a",
+    "connect_relationship": "n/a"
 }, {
     "id": 26,
     "sensitive": true,
     "name": "Aqua Morty",
     "age": "50",
     "location": "Home",
-    "hometown": "Helsinki",
+    "home_town": "Helsinki",
     "current_city": "Cincinati",
-    "contact_info": "derp@derpderp.com",
-    "note": "n/a"
+    "contact": "derp@derpderp.com",
+    "connect_name": "n/a",
+    "connect_age": "n/a",
+    "connect_location": "n/a",
+    "connect_relationship": "n/a"
 }, {
     "id": 27,
     "sensitive": true,
     "name": "Aqua Morty",
     "age": "50",
     "location": "Home",
-    "hometown": "Helsinki",
+    "home_town": "Helsinki",
     "current_city": "Cincinati",
-    "contact_info": "derp@derpderp.com",
-    "note": "n/a"
+    "contact": "derp@derpderp.com",
+    "connect_name": "n/a"
 }, {
     "id": 28,
     "sensitive": true,
     "name": "Aqua Morty",
     "age": "50",
     "location": "Home",
-    "hometown": "Helsinki",
+    "home_town": "Helsinki",
     "current_city": "Cincinati",
-    "contact_info": "derp@derpderp.com",
-    "note": "n/a"
+    "contact": "derp@derpderp.com",
+    "connect_name": "n/a"
 }, {
     "id": 29,
     "sensitive": true,
     "name": "Aqua Morty",
     "age": "50",
     "location": "Home",
-    "hometown": "Helsinki",
+    "home_town": "Helsinki",
     "current_city": "Cincinati",
-    "contact_info": "derp@derpderp.com",
-    "note": "n/a"
+    "contact": "derp@derpderp.com",
+    "connect_age": "n/a",
+    "connect_location": "n/a",
+    "connect_relationship": "n/a"
 }, {
     "id": 30,
     "sensitive": true,
     "name": "Aqua Morty",
     "age": "50",
     "location": "Home",
-    "hometown": "Helsinki",
+    "home_town": "Helsinki",
     "current_city": "Cincinati",
-    "contact_info": "derp@derpderp.com",
-    "note": "n/a"
+    "contact": "derp@derpderp.com",
+    "connect_name": "n/a",
+    "connect_age": "n/a",
+    "connect_location": "n/a",
+    "connect_relationship": "n/a"
 }, {
     "id": 31,
     "sensitive": true,
     "name": "Aqua Morty",
     "age": "50",
     "location": "Home",
-    "hometown": "Helsinki",
+    "home_town": "Helsinki",
     "current_city": "Cincinati",
-    "contact_info": "derp@derpderp.com",
-    "note": "n/a"
+    "contact": "derp@derpderp.com",
+    "connect_name": "n/a",
+    "connect_age": "n/a",
+    "connect_location": "n/a",
+    "connect_relationship": "n/a"
 }]

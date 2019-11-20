@@ -1,15 +1,16 @@
 import React from "react"
 import CaseList from "../caseComponents/CaseList"
-import {LoggedInNav} from "./Nav";
+import {Nav} from "./Nav";
 import Header from "./Header";
-import CreateNewCaseForm from "./../caseComponents/CreateCaseForm"
+import CreateNewCase from "./../caseComponents/CreateCaseForm"
 
 export default function LoggedIn(){
     return (
         <div>
             <Header />
-            <LoggedInNav />
+            <Nav />
             <CaseList />
+            <CreateNewCase />
         </div>
     )
 }

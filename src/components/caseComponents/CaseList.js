@@ -18,7 +18,10 @@ export default function CaseList(){
                     home_town={client.home_town}
                     current_city={client.current_city}
                     contact={client.contact}
-                    note={client.note}/>
+                    connect_name={client.connect_name}
+                    connect_age={client.connect_age}
+                    connect_relationship={client.connect_relationship}
+                    connect_location={client.connect_location}/>
                 ))
             }
         </Grid>

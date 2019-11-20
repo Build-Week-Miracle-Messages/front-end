@@ -1,7 +1,7 @@
 import React from "react";
 import {Paper, Tabs, Tab, Toolbar, Typography, Button, IconButton} from "@material-ui/core"
 
-export function LoggedInNav() {
+export function Nav() {
   return (
     <Paper>
       <Tabs centered indicatorColor="primary" textColor="primary">

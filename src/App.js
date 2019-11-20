@@ -6,6 +6,8 @@ import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-d
 import { updateToken } from './actions/index'
 
 import SignUp from "./components/login/signupForm"
+
+import CreateNewCase from "./components/caseComponents/CreateCaseForm"
 import LoginForm from './components/login/loginForm'
 import CaseList from './components/caseComponents/CaseList';
 
@@ -35,8 +37,6 @@ function App() {
         <Route exact path='/login' component={LoginForm} />
         <PrivateRoute path="/" component={CaseList} />
       </Switch>
-      <SignUp />
-
     </Router>
   );
 }

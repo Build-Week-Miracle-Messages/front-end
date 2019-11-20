@@ -1,18 +1,28 @@
 import React, {useState} from "react";
 import axios from "axios";
 
-import {postRegisterUser} from "./../../actions"
-import {useDispatch} from "react-redux"
+import {postRegisterUser} from "./../../actions";
+import {useDispatch} from "react-redux";
+
+import useForm from "react-hook-form";
+import * as Yup from "yup";
 
 //styling
-import {Button, Paper, TextField, Typography} from "@material-ui/core";
+import {Button, Paper, TextField, Typography, Avatar} from "@material-ui/core";
 import { makeStyles } from '@material-ui/core/styles';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle'
 
 //Formik
 // import {withFormik, Form} from 'formik';
 // import * as Yup from "yup";
 
 
+const SignupSchema = Yup.object().shape({
+  name: Yup.string().required("Name is required"),
+  username: Yup.number().required("Username is required"),
+  email: Yup.string().email("Valid Email Address is required").required("Email is required"),
+  password: Yup.string().required("Password is required"),
+})
 
 
 const useStyles = makeStyles(theme => ({
@@ -41,6 +51,9 @@ const useStyles = makeStyles(theme => ({
 
 export default function SignUp(props){
 
+    const {register, errors} = useForm({
+      validationSchema: SignupSchema
+    })
     const dispatch = useDispatch();
     const classes = useStyles();
     const [registerUsers, setUsers] = useState({})
@@ -58,7 +71,9 @@ export default function SignUp(props){
         <Paper className={classes.paper}>
             
         <Typography variant="h5">Sign Up</Typography>
-        <form className={classes.paper}>
+        <Avatar><AccountCircleIcon />
+        </Avatar>
+        <form className={classes.paper} onSubmit={handleSubmit}>
             
         <TextField
           required

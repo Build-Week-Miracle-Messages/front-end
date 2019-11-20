@@ -1,10 +1,25 @@
 import React, {useState} from "react";
 
+import useForm from "react-hook-form"
+import * as Yup from "yup"
+
 //styling
 import {makeStyles} from "@material-ui/styles"
-import {Button, Paper, Checkbox, TextField, Typography} from "@material-ui/core"
+import {Grid, Button, Paper, Checkbox, TextField, Typography, Switch, FormControlLabel, Collapse, Avatar} from "@material-ui/core"
+import AccountCircleIcon from '@material-ui/icons/AccountCircle'
 
 
+
+// const ClientSchema = Yup.object().shape({
+//   name: Yup.string().required("Client's name is required"),
+//   age: Yup.number().required("Number is required").positive("Age has to be positive").integer("Age has to be an interger"),
+//   home_town: Yup.string().required("Client's hometown is required"),
+//   current_city: Yup.string().required("Client's current city is required"),
+//   contact: Yup.string().required("Client's contact is required"),
+//   connect_name: Yup.string(),
+//   connect_age: Yup.number().positive("Age has to be positive").integer("Age has to be an integer"),
+//   connect_relationship: Yup.string()
+// })
 
 const useStyles = makeStyles(theme => ({
     textField: {
@@ -19,39 +34,54 @@ const useStyles = makeStyles(theme => ({
     button: {
         width: 400,
         margin: 30,
-    }
-  }));
+    },
 
+  }));
+  
 export default function CreateNewCase(props){
-    const {values, touched, errors, isSubmitting } = props;
+    const { register, errors } = useForm({
+      validationSchema: ClientSchema
+    })
     const classes = useStyles();
 
+    const [checked, setChecked] = useState(false)
+    
     const [clients, setClients] = useState({})
 
     const handleSubmit = e => {
       e.preventDefault()
       // dispatch(postRegisterUser({ props, clients }))
   }
-
+    
     const handleChange = e => {
       setClients({ ...clients, [e.target.name]: e.target.value })
     }
 
-    return (
-        <Paper>
+    const toggleForm = () => {
+      setChecked(prev => !prev);
+    };
 
-        <form className={classes.paper}>
+    return (
+        <Paper className={classes.paper}>
+        <Typography variant="h5">Create a new case</Typography>
+        <Avatar><AccountCircleIcon />
+        </Avatar>
+        Please complete the information below
+        <form className={classes.paper} onSubmit={handleSubmit}>
 
         <TextField
           required
           id="name"
+          type="text"
           label="Client's Name"
           className={classes.textField}
           margin="normal"
           variant="outlined"
           name="name"
           autoFocus
+          ref={register}
         />
+        {errors.name && <p>{errors.name.message}</p>}
         <TextField
           required
           id="age"
@@ -61,7 +91,9 @@ export default function CreateNewCase(props){
           variant="outlined"
           name="age"
           autoFocus
+          ref={register}
         />
+        {errors.age && <p>{errors.age.message}</p>}
 
         <TextField
           required
@@ -72,7 +104,9 @@ export default function CreateNewCase(props){
           variant="outlined"
           name="current_city"
           autoFocus
+          ref={register}
         />
+        {errors.current_city && <p>{errors.current_city.message}</p>}
 
         <TextField
           required
@@ -83,7 +117,9 @@ export default function CreateNewCase(props){
           variant="outlined"
           name="home_town"
           autoFocus
+          ref={register}
         />
+        {errors.home_town && <p>{errors.home_town.message}</p>}
 
         <TextField
           required
@@ -94,50 +130,74 @@ export default function CreateNewCase(props){
           variant="outlined"
           name="contact"
           autoFocus
+          ref={register}
         />
+        {errors.contact && <p>{errors.contact.message}</p>}
 
 
-        <Checkbox checked={values.sensitive} name="sensitive"/> <Typography>Check if this is a sensitive case.</Typography>
+        <FormControlLabel
+        control={<Checkbox name="sensitive" ref={register}/>} label="Is this a sensitive case?" />
 
-        <TextField
+        <FormControlLabel
+        control={<Switch checked={checked} onChange={toggleForm} />}
+        label="Does client have anybody they wish to connect with?"/>
+        <div>
+        <Collapse in={checked}>
+          <Paper elevation={10} >
+
+          </Paper>
+        </Collapse>
+        <Collapse in={checked}>
+          <Grid elevation={10} className={classes.paper}>
+          <TextField
           id="connect_name"
-          label="Note"
+          label="Relative's Name"
           className={classes.textField}
           margin="normal"
           variant="outlined"
           name="connect_name"
           autoFocus
+          ref={register}
         />
+        {errors.connect_name && <p>{errors.connect_name .message}</p>}
 
         <TextField
           id="connect_age"
-          label="Note"
+          label="Relative's Age"
           className={classes.textField}
           margin="normal"
           variant="outlined"
           name="connect_age"
           autoFocus
+          ref={register}
           /> 
-
+        {errors.connect_age && <p>{errors.connect_age .message}</p>}
         <TextField
           id="connect_relationship"
-          label="Note"
+          label="Relationship with Client"
           className={classes.textField}
           margin="normal"
           variant="outlined"
           name="connect_relationship"
           autoFocus
+          ref={register}
         />
+         {errors.connect_relationship && <p>{errors.connect_relationship.message}</p>}
 
         <TextField
           id="connect_location"
-          label="Note"
+          label="Last Known Location"
           className={classes.textField}
           margin="normal"
           variant="outlined"
           name="connect_location"
           autoFocus
+          ref={register}
         />
+         {errors.connect_location && <p>{errors.connect_location.message}</p>}
+          </Grid>
+        </Collapse>
+        </div>
 
         <Button className={classes.button} variant="contained" color="primary">
           Create a Case
