@@ -1,10 +1,11 @@
 import React, {useState} from "react";
 
+import useForm from "react-hook-form"
+
 //styling
 import {makeStyles} from "@material-ui/styles"
-import {Button, Paper, Checkbox, TextField, Typography} from "@material-ui/core"
-
-
+import {Grid, Button, Paper, Checkbox, TextField, Typography, Switch, FormControlLabel, Collapse, Avatar} from "@material-ui/core"
+import AccountCircleIcon from '@material-ui/icons/AccountCircle'
 
 const useStyles = makeStyles(theme => ({
     textField: {
@@ -19,39 +20,50 @@ const useStyles = makeStyles(theme => ({
     button: {
         width: 400,
         margin: 30,
-    }
-  }));
+    },
 
+  }));
+  
 export default function CreateNewCase(props){
-    const {values, touched, errors, isSubmitting } = props;
+    const { register} = useForm()
     const classes = useStyles();
 
+    const [checked, setChecked] = useState(false)
+    
     const [clients, setClients] = useState({})
 
     const handleSubmit = e => {
       e.preventDefault()
       // dispatch(postRegisterUser({ props, clients }))
   }
-
+    
     const handleChange = e => {
       setClients({ ...clients, [e.target.name]: e.target.value })
     }
 
-    return (
-        <Paper>
+    const toggleForm = () => {
+      setChecked(prev => !prev);
+    };
 
-        <form className={classes.paper}>
+    return (
+        <div className={classes.paper}>
+        <Avatar><AccountCircleIcon />
+        </Avatar>
+        <form className={classes.paper} onSubmit={handleSubmit}>
 
         <TextField
           required
           id="name"
+          type="text"
           label="Client's Name"
           className={classes.textField}
           margin="normal"
           variant="outlined"
           name="name"
           autoFocus
+          ref={register}
         />
+
         <TextField
           required
           id="age"
@@ -61,7 +73,9 @@ export default function CreateNewCase(props){
           variant="outlined"
           name="age"
           autoFocus
+          ref={register}
         />
+
 
         <TextField
           required
@@ -72,7 +86,9 @@ export default function CreateNewCase(props){
           variant="outlined"
           name="current_city"
           autoFocus
+          ref={register}
         />
+
 
         <TextField
           required
@@ -83,7 +99,9 @@ export default function CreateNewCase(props){
           variant="outlined"
           name="home_town"
           autoFocus
+          ref={register}
         />
+
 
         <TextField
           required
@@ -94,94 +112,77 @@ export default function CreateNewCase(props){
           variant="outlined"
           name="contact"
           autoFocus
+          ref={register}
         />
 
 
-        <Checkbox checked={values.sensitive} name="sensitive"/> <Typography>Check if this is a sensitive case.</Typography>
 
-        <TextField
+        <FormControlLabel
+        control={<Checkbox name="sensitive" ref={register}/>} label="Is this a sensitive case?" />
+
+        <FormControlLabel
+        control={<Switch checked={checked} onChange={toggleForm} />}
+        label="Does client have anybody they wish to connect with?"/>
+        <div>
+        <Collapse in={checked}>
+          <Paper elevation={10} >
+
+          </Paper>
+        </Collapse>
+        <Collapse in={checked}>
+          <Grid elevation={10} className={classes.paper}>
+          <TextField
           id="connect_name"
-          label="Note"
+          label="Relative's Name"
           className={classes.textField}
           margin="normal"
           variant="outlined"
           name="connect_name"
           autoFocus
+          ref={register}
         />
+
 
         <TextField
           id="connect_age"
-          label="Note"
+          label="Relative's Age"
           className={classes.textField}
           margin="normal"
           variant="outlined"
           name="connect_age"
           autoFocus
+          ref={register}
           /> 
 
         <TextField
           id="connect_relationship"
-          label="Note"
+          label="Relationship with Client"
           className={classes.textField}
           margin="normal"
           variant="outlined"
           name="connect_relationship"
           autoFocus
+          ref={register}
         />
-
         <TextField
           id="connect_location"
-          label="Note"
+          label="Last Known Location"
           className={classes.textField}
           margin="normal"
           variant="outlined"
           name="connect_location"
           autoFocus
+          ref={register}
         />
+        
+          </Grid>
+        </Collapse>
+        </div>
 
         <Button className={classes.button} variant="contained" color="primary">
           Create a Case
         </Button>
         </form>
-        </Paper>
+        </div>
     )
 }
-
-// export const FormikNewCase = withFormik({
-//     mapPropsToValues({name, age, current_city, hometown, contact_info, note, sensitive}){
-//         return {
-//             name: name || "",
-//             age: age || "",
-//             current_city: current_city || "",
-//             hometown: hometown || "",
-//             contact_info: contact_info || "",
-//             note: note || "",
-//             sensitive: sensitive || false,
-//         }
-
-//     },
-
-//     validationSchema: Yup.object().shape({
-//         name: Yup.string().required(`* Client's Name cannot be blank`),
-//         age: Yup.number().required(`* Please input client's age`),
-//         current_city: Yup.string().required(`* Current city cannot be blank`),
-//         hometown: Yup.string().required(`* Please advised client's hometown. If unknown, please put N/A`),
-//         contact_info:  Yup.string().required(`* Please advised the best way to contact client`)
-//     }),
-
-//     handleSubmit(values, {resetForm, setSubmitting}){
-//         axios
-//             .post("https://reqres.in/api/users",values)
-//             .then(res =>{
-//                 resetForm();
-//                 console.log(res)
-
-//             })
-//             .catch(err => {
-//                 console.log("CODE RED", err);
-//             }) 
-//             .finally(()=>{
-//                 setSubmitting(false)
-//             })
-//     }
-// })(CreateNewCase)

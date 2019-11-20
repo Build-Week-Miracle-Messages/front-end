@@ -1,17 +1,14 @@
 import React, {useState} from "react";
-import axios from "axios";
 
-import {postRegisterUser} from "./../../actions"
-import {useDispatch} from "react-redux"
+import {postRegisterUser} from "./../../actions";
+import {useDispatch} from "react-redux";
+
+import useForm from "react-hook-form";
 
 //styling
-import {Button, Paper, TextField, Typography} from "@material-ui/core";
+import {Button, TextField, Avatar} from "@material-ui/core";
 import { makeStyles } from '@material-ui/core/styles';
-
-//Formik
-// import {withFormik, Form} from 'formik';
-// import * as Yup from "yup";
-
+import AccountCircleIcon from '@material-ui/icons/AccountCircle'
 
 
 
@@ -41,6 +38,8 @@ const useStyles = makeStyles(theme => ({
 
 export default function SignUp(props){
 
+    const {register} = useForm()
+
     const dispatch = useDispatch();
     const classes = useStyles();
     const [registerUsers, setUsers] = useState({})
@@ -55,10 +54,12 @@ export default function SignUp(props){
     }
 
     return (
-        <Paper className={classes.paper}>
+        <div className={classes.paper}>
             
-        <Typography variant="h5">Sign Up</Typography>
-        <form className={classes.paper}>
+        <Avatar>
+          <AccountCircleIcon />
+        </Avatar>
+        <form className={classes.paper} onSubmit={handleSubmit}>
             
         <TextField
           required
@@ -70,6 +71,7 @@ export default function SignUp(props){
           variant="outlined"
           onChange={handleChange}
           autoFocus
+          ref={register}
         />
 
         <TextField
@@ -82,6 +84,7 @@ export default function SignUp(props){
           variant="outlined"
           onChange={handleChange}
           autoFocus
+          ref={register}
         />
 
         <TextField
@@ -94,6 +97,7 @@ export default function SignUp(props){
           variant="outlined"
           onChange={handleChange}
           autoFocus
+          ref={register}
         />
 
         <TextField
@@ -107,6 +111,7 @@ export default function SignUp(props){
           variant="outlined"
           onChange={handleChange}
           autoFocus
+          ref={register}
         />
 
 
@@ -114,47 +119,7 @@ export default function SignUp(props){
           Submit
         </Button>
         </form>
-        </Paper>
+        </div>
     )
 
-
 }
-
-// export const FormikRegister = withFormik({
-  
-//   mapPropsToValues({name, username, email, password}){
-//       return {
-//           name: name || "",
-//           username : username || "",
-//           email: email || "",
-//           password : password || "",
-//       }
-//   },
-
-//   validationSchema: Yup.object().shape({
-//       name: Yup.string().required(`* Name cannot be blank`),
-//       username: Yup.string().required(`* Username cannot be blank`),
-//       email: Yup.string().email(`Please enter a valid email`).required(`* Please provide your email address`),
-//       password: Yup.string().min(8, '* Password must be 8 characters or longer').required('* Password is required'),
-//   }),
-
-//   handleSubmit(values){
-//     dispatch(postRegisterUser(values))
-// }
-// })(SignUp)
-
-// {touched.name && errors.name && (
-//   <p>{errors.name}</p>
-// )}
-
-// {touched.email && errors.email && (
-//   <p>{errors.email}</p>
-// )}
-
-// {touched.username && errors.username && (
-//   <p>{errors.username}</p>
-// )}
-
-// {touched.password && errors.password && (
-//   <p>{errors.password}</p>
-// )}

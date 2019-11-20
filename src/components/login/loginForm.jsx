@@ -16,6 +16,9 @@ import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
 
+import {Dialog, DialogTitle, DialogContent, DialogContentText} from '@material-ui/core'
+import SignUp from './signupForm'
+
 export default props => {
     const [credentials, setCredentials] = useState({})
     const dispatch = useDispatch()
@@ -66,6 +69,17 @@ export default props => {
             margin: theme.spacing(3, 0, 2),
         },
     }));
+    
+    //dialog handling
+    const [open, setOpen] = useState(false);
+    const handleClickOpen = () => {
+      setOpen(true);
+    };
+  
+    const handleClose = () => {
+      setOpen(false);
+    };
+    //end of dialoghandlign
 
     const classes = useStyles();
 
@@ -124,9 +138,18 @@ export default props => {
                     </Link>
                         </Grid>
                         <Grid item>
-                            <Link href="#" variant="body2">
+                            <Link href="#" variant="body2" onClick={handleClickOpen}>
                                 {"Don't have an account? Sign Up"}
                             </Link>
+                            <Dialog 
+                                open={open}
+                                onClose={handleClose}>
+                                    <DialogTitle id="creat-a-new-case">Volunteer Sign Up</DialogTitle>
+                                    <DialogContent>
+                                    <DialogContentText>Please complete the form below</DialogContentText>
+                                    <SignUp />
+                                    </DialogContent>
+                            </Dialog>
                         </Grid>
                     </Grid>
                 </form>
