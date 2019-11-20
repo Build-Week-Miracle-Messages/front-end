@@ -9,7 +9,7 @@ import {dummyData} from "./dummydata"
 
 import axios from "axios"
 
-export default function CaseList(){
+export default function CaseList(props){
     const [clientInfo, setClient] = useState(dummyData)
     const [action, setAction] = useState([])
 
@@ -24,7 +24,7 @@ export default function CaseList(){
 
     return(
         <Grid container direction="column" alignItems="center">
-            <Header />
+            <Header props={props}/>
 
             {
                 clientInfo.map(client=>(

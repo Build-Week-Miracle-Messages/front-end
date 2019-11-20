@@ -39,5 +39,5 @@ export const updateToken = payload => dispatch => {
 
 export const logoutUser = payload => dispatch => {
     dispatch({ type: LOGOUT_USER, payload: payload })
-    payload.history.push('/login')
+    payload.props.history.push('/login')
 }

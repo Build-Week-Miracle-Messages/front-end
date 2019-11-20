@@ -1,12 +1,14 @@
 import React from "react"
-
+import {useSelector, useDispatch} from 'react-redux'
+import {logoutUser} from '../../actions'
 import {AppBar, Toolbar, Grid, Button, IconButton} from "@material-ui/core"
 import {Dialog, DialogTitle, DialogContent, DialogContentText} from '@material-ui/core'
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import CreateNewCase from './../caseComponents/CreateCaseForm'
 
-export default function Header() {
-
+export default function Header(props) {
+  const isLoggedIn = useSelector(state => state.isLoggedIn)
+  const dispatch = useDispatch()
   const [open, setOpen] = React.useState(false);
   const handleClickOpen = () => {
     setOpen(true);
@@ -38,7 +40,7 @@ export default function Header() {
             <CreateNewCase />
             </DialogContent>
       </Dialog>
-          <Button color="inherit">Log Out</Button>
+          <Button color="inherit" onClick={()=> dispatch(logoutUser(props))}>Log Out</Button>
           </span>
           </Grid>
         </Toolbar>
