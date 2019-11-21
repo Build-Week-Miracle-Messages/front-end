@@ -1,9 +1,9 @@
 import React from "react"
 import {useDispatch} from 'react-redux'
 import {logoutUser} from '../../actions'
-import {AppBar, Toolbar, Grid, Button, IconButton} from "@material-ui/core"
+import {AppBar, Toolbar, Grid, Button, IconButton, Typography} from "@material-ui/core"
 import {Dialog, DialogTitle, DialogContent, DialogContentText} from '@material-ui/core'
-import AccountCircle from '@material-ui/icons/AccountCircle';
+import {AccountCircle, Flare} from '@material-ui/icons/';
 import CreateNewCase from './../caseComponents/CreateCaseForm'
 
 export default function Header(props) {
@@ -21,9 +21,12 @@ export default function Header(props) {
     <AppBar position="static">
       
         <Toolbar>
-          <Grid container justify="space-between">
-          <span>
-            Miracle Messages Volunteer Dashboard
+          <Grid container justify="space-between" alignItems="center">
+            <span>
+              <Flare/>
+              <Typography varaiant="h3" component="h5" color="inherit">
+                Miracle Messages
+              </Typography>
           </span>
           <span>
           <IconButton edge="start" color="inherit" aria-label="avatar">

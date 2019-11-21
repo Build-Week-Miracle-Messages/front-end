@@ -3,7 +3,7 @@ import Case from "./Case"
 
 import {useSelector, useDispatch} from 'react-redux'
 
-import {Grid} from "@material-ui/core"
+import {Grid, Typography} from "@material-ui/core"
 
 
 import Header from "./../layout/Header"
@@ -31,7 +31,9 @@ export default function CaseList(props){
     return(
         <Grid container direction="column" alignItems="center">
             <Header props={props}/>
-
+            <Typography variant="h3" component="h4" color="primary">Welcome to Miracle Messages Cases Dashboard</Typography>
+            <Typography variant="body">You can make a different!</Typography>
+            
             {
                 cases.map(client=>(
                     <Case 
@@ -51,6 +53,7 @@ export default function CaseList(props){
                     />
                 ))
             }
+            
             <Footer />
         </Grid>
     )
