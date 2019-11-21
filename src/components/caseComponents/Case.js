@@ -66,7 +66,7 @@ export default function Case(props){
                 <Grid container justify="flex-end">
                     <Button color="primary" onClick={handleClickOpen}><Edit /></Button>
                         <Dialog open={open}
-                            onClose={handleClose}>>
+                            onClose={handleClose}>
                             <DialogTitle id="edit-case">Edit</DialogTitle>
                             <DialogContent>
                             <EditForm />
