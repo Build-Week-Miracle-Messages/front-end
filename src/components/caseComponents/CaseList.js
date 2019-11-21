@@ -9,7 +9,7 @@ import Header from "./../layout/Header"
 
 import {dummyData} from "./dummydata"
 
-import {getCases} from '../../actions'
+import {getCases, deleteCase, updateCase} from '../../actions'
 
 export default function CaseList(props){
     const cases = useSelector(state => state.cases)
@@ -17,12 +17,11 @@ export default function CaseList(props){
     const dispatch = useDispatch()
 
     const handleDelete = id => {
-        const newClientInfo = clientInfo.filter(person => person.id !== id)
-        setClient(newClientInfo)
+        dispatch(deleteCase(id))
     }
 
     const handleEdit = id => {
-        console.log(id)
+        dispatch(updateCase(id))
     }
 
     useEffect(() => {
