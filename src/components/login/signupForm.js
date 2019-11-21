@@ -71,7 +71,7 @@ export default function SignUp(props){
           variant="outlined"
           onChange={handleChange}
           autoFocus
-          ref={register}
+          ref={register({ required: true})}
         />
 
         <TextField
@@ -84,7 +84,7 @@ export default function SignUp(props){
           variant="outlined"
           onChange={handleChange}
           autoFocus
-          ref={register}
+          ref={register({ required: true})}
         />
 
         <TextField
@@ -97,7 +97,7 @@ export default function SignUp(props){
           variant="outlined"
           onChange={handleChange}
           autoFocus
-          ref={register}
+          ref={register({ required: true})}
         />
 
         <TextField
@@ -111,7 +111,7 @@ export default function SignUp(props){
           variant="outlined"
           onChange={handleChange}
           autoFocus
-          ref={register}
+          ref={register({ required: true, minLength: 6})}
         />
 
 
