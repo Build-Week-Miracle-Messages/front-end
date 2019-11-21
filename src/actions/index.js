@@ -16,6 +16,10 @@ export const GET_CASES_START = 'GET_CASES_START'
 export const GET_CASES_SUCCESS = 'GET_CASES_SUCCESS'
 export const GET_CASES_FAIL = 'GET_CASES_FAIL'
 
+export const GET_CURRENT_CASES_START = 'GET_CURRENT_CASES_START'
+export const GET_CURRENT_CASES_SUCCESS = 'GET_CURRENT_CASES_SUCCESS'
+export const GET_CURRENT_CASES_FAIL = 'GET_CURRENT_CASES_FAIL'
+
 export const GET_CASE_START = 'GET_CASE_START'
 export const GET_CASE_SUCCESS = 'GET_CASE_SUCCESS'
 export const GET_CASE_FAIL = 'GET_CASE_FAIL'
@@ -65,8 +69,15 @@ export const getCases = payload => dispatch => {
         .catch(err => dispatch({ type: GET_CASES_FAIL, payload: err }))
 }
 
+export const getCurrentCases = payload => dispatch => {
+    dispatch({ type: GET_CURRENT_CASES_START, payload: payload })
+    axiosWithAuth()
+        .get('https://miracle-message.herokuapp.com/api/cases/current', payload)
+        .then(res =>  dispatch({ type: GET_CURRENT_CASES_SUCCESS, payload: res.data }))
+        .catch(err => dispatch({ type: GET_CURRENT_CASES_FAIL, payload: err }))
+}
+
 export const createCase = payload => dispatch => {
-    console.log(payload)
     dispatch({ type: CREATE_CASE_START })
     axiosWithAuth()
         .post('https://miracle-message.herokuapp.com/api/cases', payload)
@@ -86,7 +97,7 @@ export const updateCase = payload => dispatch => {
 export const deleteCase = payload => dispatch => {
     dispatch({ type: DELETE_CASE_START })
     axiosWithAuth()
-        .delete(`https://miracle-message.herokuapp.com/api/cases/${payload.id}`, payload)
+        .delete(`https://miracle-message.herokuapp.com/api/cases/${payload}`, payload)
         .then(res => dispatch({ type: DELETE_CASE_SUCCESS, payload: res.data }))
         .catch(err => dispatch({ type: DELETE_CASE_FAIL, payload: err }))
 }
@@ -94,7 +105,7 @@ export const deleteCase = payload => dispatch => {
 export const getCase = payload => dispatch => {
     dispatch({ type: GET_CASE_START })
     axiosWithAuth()
-        .get(`https://miracle-message.herokuapp.com/api/cases/${payload.id}`, payload)
+        .get(`https://miracle-message.herokuapp.com/api/cases/${payload}`, payload)
         .then(res => dispatch({ type: GET_CASE_SUCCESS, payload: res.data }))
         .catch(err => dispatch({ type: GET_CASE_FAIL, payload: err }))
 }

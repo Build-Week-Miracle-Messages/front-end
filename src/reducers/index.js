@@ -13,6 +13,9 @@ import {
     GET_CASES_START,
     GET_CASES_SUCCESS,
     GET_CASES_FAIL,
+    GET_CURRENT_CASES_START,
+    GET_CURRENT_CASES_SUCCESS,
+    GET_CURRENT_CASES_FAIL,
     GET_CASE_START,
     GET_CASE_SUCCESS,
     GET_CASE_FAIL,
@@ -109,6 +112,31 @@ export default (state = initialState, action) => {
         }
 
         case GET_CASES_FAIL: {
+            return {
+                ...state,
+                gettingCases: false,
+                gotCases: false,
+                caseError: action.payload
+            }
+        }
+
+        case GET_CURRENT_CASES_START: {
+            return {
+                ...state,
+                gettingCases: true
+            }
+        }
+
+        case GET_CURRENT_CASES_SUCCESS: {
+            return {
+                ...state,
+                gettingCases: false,
+                gotCases: true,
+                cases: action.payload
+            }
+        }
+
+        case GET_CURRENT_CASES_FAIL: {
             return {
                 ...state,
                 gettingCases: false,
