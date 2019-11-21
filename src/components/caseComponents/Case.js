@@ -36,7 +36,7 @@ export default function Case(props){
 
     return (
         <div style={{marginTop: 20}}>
-            <Grow>
+
             <Card className={classes.card}>
             <CardContent>
 
@@ -80,7 +80,6 @@ export default function Case(props){
                     </Grid>
                 </CardActions>
             </Card>
-            </Grow>
         </div>
     )
 }
