@@ -20,7 +20,7 @@ const useStyles = makeStyles(theme => ({
     textField: {
       marginLeft: theme.spacing(1),
       marginRight: theme.spacing(1),
-      width: 400,
+      width: 350,
     },
     paper: {
         display: 'flex',
@@ -29,7 +29,7 @@ const useStyles = makeStyles(theme => ({
     },
 
     button: {
-        width: 400,
+        width: 350,
         margin: 30,
     }
   }));
@@ -71,7 +71,7 @@ export default function SignUp(props){
           variant="outlined"
           onChange={handleChange}
           autoFocus
-          ref={register}
+          inputRef={register({ required: true})}
         />
 
         <TextField
@@ -84,7 +84,7 @@ export default function SignUp(props){
           variant="outlined"
           onChange={handleChange}
           autoFocus
-          ref={register}
+          ref={register({ required: true})}
         />
 
         <TextField
@@ -97,7 +97,7 @@ export default function SignUp(props){
           variant="outlined"
           onChange={handleChange}
           autoFocus
-          ref={register}
+          ref={register({ required: true})}
         />
 
         <TextField
@@ -111,7 +111,7 @@ export default function SignUp(props){
           variant="outlined"
           onChange={handleChange}
           autoFocus
-          ref={register}
+          ref={register({ required: true, minLength: 6})}
         />
 
 

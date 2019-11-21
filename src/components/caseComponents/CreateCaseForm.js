@@ -14,7 +14,7 @@ import { TextFields } from "@material-ui/icons";
 
 const useStyles = makeStyles(theme => ({
     textField: {
-      width: 400,
+      width: 350,
     },
     paper: {
         display: 'flex',
@@ -23,7 +23,7 @@ const useStyles = makeStyles(theme => ({
     },
 
     button: {
-        width: 400,
+        width: 350,
         margin: 30,
     },
 
@@ -66,7 +66,7 @@ export default function CreateNewCase(props){
           variant="outlined"
           name="name"
           autoFocus
-          inputRef={register}
+          inputRef={register({ required: true})}
         />
 
         <TextField
@@ -78,7 +78,7 @@ export default function CreateNewCase(props){
           variant="outlined"
           name="age"
           autoFocus
-          inputRef={register}
+          inputRef={register({ min: 0, max: 120 })}
         />
 
 
@@ -91,7 +91,7 @@ export default function CreateNewCase(props){
           variant="outlined"
           name="current_city"
           autoFocus
-          inputRef={register}
+          inputRef={register({ required: true})}
         />
 
 
@@ -104,7 +104,7 @@ export default function CreateNewCase(props){
           variant="outlined"
           name="home_town"
           autoFocus
-          inputRef={register}
+          inputRef={register({ required: true})}
         />
 
 
@@ -117,7 +117,7 @@ export default function CreateNewCase(props){
           variant="outlined"
           name="contact"
           autoFocus
-          inputRef={register}
+          inputRef={register({ required: true})}
         />
 
 
@@ -197,7 +197,7 @@ export function EditForm(props){
   const classes = useStyles();
 
   const { register, handleSubmit, errors} = useForm()
-  const requiredTopics = [{"keyword":"name", "label": "Name"}, {"keyword":"age", "label": "Age"}, {"keyword":"current_city", "current_city": "Current City"}, {"keyword":"home_town", "label": "Hometown"}]
+  const requiredTopics = [{"keyword":"name", "label": "Name"}, {"keyword":"age", "label": "Age"}, {"keyword":"current_city", "label": "Current City"}, {"keyword":"home_town", "label": "Hometown"}]
   const notRequiredTopics = [{"keyword":"connect_name", "label": "Name"}, {"keyword":"connect_age", "label": "Age"}, {"keyword":"connect_relationship", "label": "Relationship"}, {"keyword":"connect_location", "label": "Location"}]
 
   return (
@@ -210,19 +210,21 @@ export function EditForm(props){
       {
         requiredTopics.map(each => 
             <TextField
+            className={classes.textField}
             required
             id={each.keyword}
             name={each.keyword}
             label={each.label}
-            inputRef={register}
+            inputRef={register({ required: true})}
             />
           
         )
       }
-      <Typography variant="title">Client's Relative Information</Typography>
+      <Typography variant="title"><br /> Client's Relative Information</Typography>
       {
         notRequiredTopics.map(each => 
             <TextField
+            className={classes.textField}
             id={each.keyword}
             name={each.keyword}
             label={each.label}
@@ -230,6 +232,10 @@ export function EditForm(props){
           />        
         )
       }
+
+        <Button className={classes.button} type="submit" variant="contained" color="primary">
+          Edit
+        </Button>
       </form>
     </div>
   )
