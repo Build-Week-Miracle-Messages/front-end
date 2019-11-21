@@ -143,6 +143,7 @@ export default function CreateNewCase(props){
           margin="normal"
           variant="outlined"
           name="connect_name"
+          defaultValue="N/A"
           autoFocus
           inputRef={register}
         />
@@ -155,6 +156,7 @@ export default function CreateNewCase(props){
           margin="normal"
           variant="outlined"
           name="connect_age"
+          defaultValue="N/A"
           autoFocus
           inputRef={register}
           /> 
@@ -166,6 +168,7 @@ export default function CreateNewCase(props){
           margin="normal"
           variant="outlined"
           name="connect_relationship"
+          defaultValue="N/A"
           autoFocus
           inputRef={register}
         />
@@ -176,6 +179,7 @@ export default function CreateNewCase(props){
           margin="normal"
           variant="outlined"
           name="connect_location"
+          defaultValue="N/A"
           autoFocus
           inputRef={register}
         />

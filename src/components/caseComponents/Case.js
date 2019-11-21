@@ -12,7 +12,6 @@ const useStyles = makeStyles({
     card: {
         backgroundColor: 'whitesmoke',
         padding: 20,
-        transition: "0.6s",
         maxWidth: 600,
 
     },
@@ -72,7 +71,7 @@ export default function Case(props){
                             onClose={handleClose}>
                             <DialogTitle id="edit-case">Edit</DialogTitle>
                             <DialogContent>
-                            <EditForm />
+                            <EditForm/>
                             </DialogContent>
                         </Dialog>
                     
