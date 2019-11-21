@@ -8,8 +8,9 @@ import {createCase} from '../../actions'
 
 //styling
 import {makeStyles} from "@material-ui/styles"
-import {Grid, Button, Paper, Checkbox, TextField, Switch, FormControlLabel, Collapse, Avatar} from "@material-ui/core"
+import {Grid, Button, Paper, Checkbox, TextField, Switch, FormControlLabel, Collapse, Avatar, Typography} from "@material-ui/core"
 import AccountCircleIcon from '@material-ui/icons/AccountCircle'
+import { TextFields } from "@material-ui/icons";
 
 const useStyles = makeStyles(theme => ({
     textField: {
@@ -29,6 +30,7 @@ const useStyles = makeStyles(theme => ({
   }));
   
 export default function CreateNewCase(props){
+
     const { register, handleSubmit, errors} = useForm()
     const classes = useStyles();
     const dispatch = useDispatch()
@@ -188,4 +190,47 @@ export default function CreateNewCase(props){
         </form>
         </div>
     )
+}
+
+export function EditForm(props){
+
+  const classes = useStyles();
+
+  const { register, handleSubmit, errors} = useForm()
+  const requiredTopics = [{"keyword":"name", "label": "Name"}, {"keyword":"age", "label": "Age"}, {"keyword":"current_city", "current_city": "Current City"}, {"keyword":"home_town", "label": "Hometown"}]
+  const notRequiredTopics = [{"keyword":"connect_name", "label": "Name"}, {"keyword":"connect_age", "label": "Age"}, {"keyword":"connect_relationship", "label": "Relationship"}, {"keyword":"connect_location", "label": "Location"}]
+
+  return (
+    <div>
+      <form className={classes.paper}>
+        
+       <FormControlLabel
+        control={<Checkbox name="sensitive" inputRef={register}/>} label="Is this a sensitive case?" />
+      <Typography variant="title">Client's Information</Typography>
+      {
+        requiredTopics.map(each => 
+            <TextField
+            required
+            id={each.keyword}
+            name={each.keyword}
+            label={each.label}
+            inputRef={register}
+            />
+          
+        )
+      }
+      <Typography variant="title">Client's Relative Information</Typography>
+      {
+        notRequiredTopics.map(each => 
+            <TextField
+            id={each.keyword}
+            name={each.keyword}
+            label={each.label}
+            inputRef={register}
+          />        
+        )
+      }
+      </form>
+    </div>
+  )
 }
