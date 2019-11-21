@@ -66,7 +66,7 @@ export default function CreateNewCase(props){
           variant="outlined"
           name="name"
           autoFocus
-          inputRef={register}
+          inputRef={register({ required: true})}
         />
 
         <TextField
@@ -78,7 +78,7 @@ export default function CreateNewCase(props){
           variant="outlined"
           name="age"
           autoFocus
-          inputRef={register}
+          inputRef={register({ min: 0, max: 120 })}
         />
 
 
@@ -91,7 +91,7 @@ export default function CreateNewCase(props){
           variant="outlined"
           name="current_city"
           autoFocus
-          inputRef={register}
+          inputRef={register({ required: true})}
         />
 
 
@@ -104,7 +104,7 @@ export default function CreateNewCase(props){
           variant="outlined"
           name="home_town"
           autoFocus
-          inputRef={register}
+          inputRef={register({ required: true})}
         />
 
 
@@ -117,7 +117,7 @@ export default function CreateNewCase(props){
           variant="outlined"
           name="contact"
           autoFocus
-          inputRef={register}
+          inputRef={register({ required: true})}
         />
 
 

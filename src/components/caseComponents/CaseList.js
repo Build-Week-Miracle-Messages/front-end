@@ -7,7 +7,7 @@ import {Grid} from "@material-ui/core"
 
 
 import Header from "./../layout/Header"
-
+import Footer from "./../layout/Footer"
 import {dummyData} from "./dummydata"
 
 import {getCases, deleteCase} from '../../actions'
@@ -51,6 +51,7 @@ export default function CaseList(props){
                     />
                 ))
             }
+            <Footer />
         </Grid>
     )
 }
