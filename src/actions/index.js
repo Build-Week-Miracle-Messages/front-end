@@ -42,6 +42,7 @@ export const postLoginUser = payload => dispatch => {
         .post('https://miracle-message.herokuapp.com/api/auth/login/', payload.credentials)
         .then(res => {
             dispatch({ type: LOGIN_SUCCESS, payload: res.data })
+            dispatch(getCurrentCases)
             payload.props.history.push('/')
         })
         .catch(err => dispatch({ type: LOGIN_FAIL, payload: err }))

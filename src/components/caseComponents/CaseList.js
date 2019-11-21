@@ -23,8 +23,7 @@ export default function CaseList(props){
     }
 
     useEffect(() => {
-        console.log("Use effect firing")
-        dispatch(getCurrentCases)
+        dispatch(getCurrentCases())
     },[])
 
     return(
