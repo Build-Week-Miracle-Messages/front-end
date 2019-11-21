@@ -90,6 +90,14 @@ export const updateCase = payload => dispatch => {
     dispatch({ type: UPDATE_CASE_START })
     axiosWithAuth()
         .put(`https://miracle-message.herokuapp.com/api/cases/person/${payload.id}`, {
+            
+                name: payload.name,
+                age: Number(payload.age),
+                home_town: payload.home_town,
+                current_city: payload.current_city,
+                contact: payload.contact
+
+            
         })
         .then(res => dispatch({ type: UPDATE_CASE_SUCCESS, payload: res.data }))
         .catch(err => dispatch({ type: UPDATE_CASE_FAIL, payload: err }))

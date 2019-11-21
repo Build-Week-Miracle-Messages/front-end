@@ -179,7 +179,7 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 creatingCase: false,
-                cases: action.payload
+                cases: [...state.cases.filter( el => el.id !== action.payload.id), action.payload ]
             }
         }
 

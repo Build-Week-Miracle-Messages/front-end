@@ -71,7 +71,7 @@ export default function Case(props){
                             onClose={handleClose}>
                             <DialogTitle id="edit-case">Edit</DialogTitle>
                             <DialogContent>
-                            <EditForm/>
+                            <EditForm props={props}/>
                             </DialogContent>
                         </Dialog>
                     

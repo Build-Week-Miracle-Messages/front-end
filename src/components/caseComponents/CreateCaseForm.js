@@ -4,7 +4,7 @@ import useForm from "react-hook-form"
 
 import {useDispatch} from 'react-redux'
 
-import {createCase} from '../../actions'
+import {createCase, updateCase} from '../../actions'
 
 //styling
 import {makeStyles} from "@material-ui/styles"
@@ -199,14 +199,19 @@ export default function CreateNewCase(props){
 export function EditForm(props){
 
   const classes = useStyles();
+  const dispatch = useDispatch();
 
   const { register, handleSubmit, errors} = useForm()
   const requiredTopics = [{"keyword":"name", "label": "Name"}, {"keyword":"age", "label": "Age"}, {"keyword":"current_city", "label": "Current City"}, {"keyword":"home_town", "label": "Hometown"}]
   const notRequiredTopics = [{"keyword":"connect_name", "label": "Name"}, {"keyword":"connect_age", "label": "Age"}, {"keyword":"connect_relationship", "label": "Relationship"}, {"keyword":"connect_location", "label": "Location"}]
+  console.log(props)
+  
+  const onEditSubmit = editData => dispatch(updateCase({ id: props.props.id , ...editData }))
+
 
   return (
     <div>
-      <form className={classes.paper}>
+      <form className={classes.paper} onSubmit={handleSubmit(onEditSubmit)}>
         
        <FormControlLabel
         control={<Checkbox name="sensitive" inputRef={register}/>} label="Is this a sensitive case?" />
@@ -219,6 +224,7 @@ export function EditForm(props){
             id={each.keyword}
             name={each.keyword}
             label={each.label}
+            defaultValue={props.props[each.keyword]}
             inputRef={register({ required: true})}
             />
           
@@ -232,6 +238,7 @@ export function EditForm(props){
             id={each.keyword}
             name={each.keyword}
             label={each.label}
+            defaultValue={props.props[each.keyword]}
             inputRef={register}
           />        
         )
