@@ -163,6 +163,29 @@ export default (state = initialState, action) => {
             }
         }
 
+        case CREATE_CASE_START: {
+            return {
+                ...state,
+                creatingCase: true
+            }
+        }
+
+        case CREATE_CASE_SUCCESS: {
+            return {
+                ...state,
+                creatingCase: false,
+                cases: [...state.cases, action.payload]
+            }
+        }
+
+        case CREATE_CASE_FAIL: {
+            return {
+                ...state,
+                creatingCase: false,
+                caseError: action.payload
+            }
+        }
+
         default: {
             return state
         }

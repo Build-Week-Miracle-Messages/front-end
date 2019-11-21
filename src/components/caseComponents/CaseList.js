@@ -1,5 +1,7 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import Case from "./Case"
+
+import {useSelector, useDispatch} from 'react-redux'
 
 import {Grid} from "@material-ui/core"
 
@@ -7,8 +9,12 @@ import Header from "./../layout/Header"
 
 import {dummyData} from "./dummydata"
 
+import {getCases} from '../../actions'
+
 export default function CaseList(props){
+    const cases = useSelector(state => state.cases)
     const [clientInfo, setClient] = useState(dummyData)
+    const dispatch = useDispatch()
 
     const handleDelete = id => {
         const newClientInfo = clientInfo.filter(person => person.id !== id)
@@ -19,12 +25,16 @@ export default function CaseList(props){
         console.log(id)
     }
 
+    useEffect(() => {
+        dispatch(getCases)
+    },[cases])
+
     return(
         <Grid container direction="column" alignItems="center">
             <Header props={props}/>
 
             {
-                clientInfo.map(client=>(
+                cases.map(client=>(
                     <Case 
                     key={client.id}
                     id={client.id} 

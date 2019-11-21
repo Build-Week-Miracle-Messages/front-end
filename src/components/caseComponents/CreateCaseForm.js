@@ -29,7 +29,7 @@ const useStyles = makeStyles(theme => ({
   }));
   
 export default function CreateNewCase(props){
-    const { register} = useForm()
+    const { register, handleSubmit, errors} = useForm()
     const classes = useStyles();
     const dispatch = useDispatch()
 
@@ -37,14 +37,12 @@ export default function CreateNewCase(props){
     
     //const [clients, setClients] = useState({})
 
-    const handleSubmit = e => {
-      e.preventDefault()
-      dispatch(createCase({ props, clients }))
-  }
+    const onSubmit = values => dispatch(createCase(values))
     
-    //const handleChange = e => {
-    // setClients({ ...clients, [e.target.name]: e.target.value })
-    //}
+   // const handleChange = e => {
+   //   setClients({ ...clients, [e.target.name]: e.target.value })
+   // }
+    
 
     const toggleForm = () => {
       setChecked(prev => !prev);
@@ -54,7 +52,7 @@ export default function CreateNewCase(props){
         <div className={classes.paper}>
         <Avatar><AccountCircleIcon />
         </Avatar>
-        <form className={classes.paper} onSubmit={handleSubmit}>
+        <form className={classes.paper} onSubmit={handleSubmit(onSubmit)}>
 
         <TextField
           required
@@ -66,7 +64,7 @@ export default function CreateNewCase(props){
           variant="outlined"
           name="name"
           autoFocus
-          ref={register}
+          inputRef={register}
         />
 
         <TextField
@@ -78,7 +76,7 @@ export default function CreateNewCase(props){
           variant="outlined"
           name="age"
           autoFocus
-          ref={register}
+          inputRef={register}
         />
 
 
@@ -91,7 +89,7 @@ export default function CreateNewCase(props){
           variant="outlined"
           name="current_city"
           autoFocus
-          ref={register}
+          inputRef={register}
         />
 
 
@@ -104,7 +102,7 @@ export default function CreateNewCase(props){
           variant="outlined"
           name="home_town"
           autoFocus
-          ref={register}
+          inputRef={register}
         />
 
 
@@ -117,13 +115,13 @@ export default function CreateNewCase(props){
           variant="outlined"
           name="contact"
           autoFocus
-          ref={register}
+          inputRef={register}
         />
 
 
 
         <FormControlLabel
-        control={<Checkbox name="sensitive" ref={register}/>} label="Is this a sensitive case?" />
+        control={<Checkbox name="sensitive" inputRef={register}/>} label="Is this a sensitive case?" />
 
         <FormControlLabel
         control={<Switch checked={checked} onChange={toggleForm} />}
@@ -144,7 +142,7 @@ export default function CreateNewCase(props){
           variant="outlined"
           name="connect_name"
           autoFocus
-          ref={register}
+          inputRef={register}
         />
 
 
@@ -156,7 +154,7 @@ export default function CreateNewCase(props){
           variant="outlined"
           name="connect_age"
           autoFocus
-          ref={register}
+          inputRef={register}
           /> 
 
         <TextField
@@ -167,7 +165,7 @@ export default function CreateNewCase(props){
           variant="outlined"
           name="connect_relationship"
           autoFocus
-          ref={register}
+          inputRef={register}
         />
         <TextField
           id="connect_location"
@@ -177,14 +175,14 @@ export default function CreateNewCase(props){
           variant="outlined"
           name="connect_location"
           autoFocus
-          ref={register}
+          inputRef={register}
         />
         
           </Grid>
         </Collapse>
         </div>
 
-        <Button className={classes.button} variant="contained" color="primary">
+        <Button className={classes.button} type="submit" variant="contained" color="primary">
           Create a Case
         </Button>
         </form>
