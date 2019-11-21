@@ -14,8 +14,7 @@ import {getCurrentCases, deleteCase} from '../../actions'
 
 export default function CaseList(props){
 
-    // const cases = useSelector(state => state.cases)
-    const [clientInfo, setClient] = useState(dummyData)
+    const cases = useSelector(state => state.cases)
     const dispatch = useDispatch()
 
     const handleDelete = id => {
@@ -33,7 +32,7 @@ export default function CaseList(props){
             <Typography variant="body1">You can make a different!</Typography>
             
             {
-                clientInfo.map(client=>(
+                cases.map(client=>(
                     <Case 
                     key={client.id}
                     id={client.id} 
