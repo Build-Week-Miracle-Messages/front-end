@@ -5,27 +5,27 @@ import {useSelector, useDispatch} from 'react-redux'
 
 import {Grid} from "@material-ui/core"
 
+
 import Header from "./../layout/Header"
 
 import {dummyData} from "./dummydata"
 
-import {getCases, deleteCase, updateCase} from '../../actions'
+import {getCases, deleteCase} from '../../actions'
 
 export default function CaseList(props){
+
     const cases = useSelector(state => state.cases)
-    const [clientInfo, setClient] = useState(dummyData)
+    const [clientInfo, setClient] = useState([])
     const dispatch = useDispatch()
 
-    const handleDelete = id => {
-        dispatch(deleteCase(id))
-    }
 
-    const handleEdit = id => {
-        dispatch(updateCase(id))
+    const handleDelete = id => {
+        dispatch(deleteCase(id));
     }
 
     useEffect(() => {
         dispatch(getCases)
+        console.log(cases)
     },[cases])
 
     return(
@@ -48,7 +48,6 @@ export default function CaseList(props){
                     connect_relationship={client.connect[0].relationship}
                     connect_location={client.connect[0].location}
                     onDelete={handleDelete}
-                    onEdit={handleEdit}
                     />
                 ))
             }

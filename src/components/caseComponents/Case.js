@@ -1,9 +1,10 @@
-import React from "react";
+import React, {useState} from "react";
 
 import {makeStyles} from "@material-ui/core/styles"
 
 import {Grid, Card, CardActions, CardContent, Button, Typography, Divider} from "@material-ui/core"
-
+import {Dialog, DialogTitle, DialogContent, DialogContentText} from '@material-ui/core'
+import {EditForm} from "./CreateCaseForm"
 import {Delete, Edit} from '@material-ui/icons'
 
 
@@ -23,6 +24,16 @@ const useStyles = makeStyles({
 export default function Case(props){
 
     const classes = useStyles();
+
+    const [open, setOpen] = useState(false);
+
+    const handleClickOpen = () => {
+      setOpen(true);
+    };
+  
+    const handleClose = () => {
+      setOpen(false);
+    };
 
     return (
         <div style={{marginTop: 20}}>
@@ -53,7 +64,14 @@ export default function Case(props){
                 </CardContent>
                 <CardActions>
                 <Grid container justify="flex-end">
-                    <Button color="primary" onClick={()=> props.onEdit(props.id)}><Edit /></Button>
+                    <Button color="primary" onClick={handleClickOpen}><Edit /></Button>
+                        <Dialog open={open}
+                            onClose={handleClose}>>
+                            <DialogTitle id="edit-case">Edit</DialogTitle>
+                            <DialogContent>
+                            <EditForm />
+                            </DialogContent>
+                        </Dialog>
                     <Button color="primary" onClick={()=> props.onDelete(props.id)}><Delete /></Button>
                     </Grid>
                 </CardActions>
