@@ -39,7 +39,10 @@ export default function CreateNewCase(props){
     
     //const [clients, setClients] = useState({})
 
-    const onSubmit = values => dispatch(createCase(values))
+    const onSubmit = values => {
+      dispatch(createCase(values))
+      props.handleClose()
+    }
     
    // const handleChange = e => {
    //   setClients({ ...clients, [e.target.name]: e.target.value })
@@ -206,7 +209,10 @@ export function EditForm(props){
   const notRequiredTopics = [{"keyword":"connect_name", "label": "Name"}, {"keyword":"connect_age", "label": "Age"}, {"keyword":"connect_relationship", "label": "Relationship"}, {"keyword":"connect_location", "label": "Location"}]
   console.log(props)
   
-  const onEditSubmit = editData => dispatch(updateCase({ id: props.props.id , ...editData }))
+  const onEditSubmit = editData => {
+    dispatch(updateCase({ id: props.props.id , ...editData }))
+    props.handleClose()
+  }
 
 
   return (

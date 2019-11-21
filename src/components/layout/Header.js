@@ -39,10 +39,10 @@ export default function Header(props) {
             <DialogTitle id="creat-a-new-case">Create a New Case</DialogTitle>
             <DialogContent>
             <DialogContentText>Please provide client's information as below</DialogContentText>
-            <CreateNewCase />
+            <CreateNewCase handleClose={handleClose}/>
             </DialogContent>
       </Dialog>
-          <Button color="inherit" onClick={()=> dispatch(logoutUser(props))}>Log Out</Button>
+          <Button color="inherit" onClick={()=> dispatch(logoutUser(props))} >Log Out</Button>
           </span>
           </Grid>
         </Toolbar>

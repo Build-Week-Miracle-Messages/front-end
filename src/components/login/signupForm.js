@@ -47,6 +47,7 @@ export default function SignUp(props){
     const handleSubmit = e => {
       e.preventDefault()
       dispatch(postRegisterUser({ props, registerUsers }))
+      props.handleClose()
   }
 
     const handleChange = e => {

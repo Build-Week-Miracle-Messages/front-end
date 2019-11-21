@@ -147,7 +147,7 @@ export default props => {
                                     <DialogTitle id="creat-a-new-case">Volunteer Sign Up</DialogTitle>
                                     <DialogContent>
                                     <DialogContentText>Please complete the form below</DialogContentText>
-                                    <SignUp />
+                                    <SignUp handleClose={handleClose}/>
                                     </DialogContent>
                             </Dialog>
                         </Grid>
